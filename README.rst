@@ -43,7 +43,7 @@ Includes territories too: ::
     >>> us.states.MD.is_territory
     False
 
-List of all (proper) states: ::
+List of all (actual) states: ::
 
     >>> us.states.STATES
     [<State:Alabama>, <State:Alaska>, <State:Arizona>, <State:Arkansas>,...
@@ -56,7 +56,7 @@ And the whole shebang, if you want it: ::
     [<State:Alabama>, <State:Alaska>, <State:American Samoa>,...
 
 For convenience, `STATES`, `TERRITORIES`, and `STATES_AND_TERRITORIES` can be
-access directly from the `us` module: ::
+accessed directly from the `us` module: ::
 
     >>> us.states.STATES
     [<State:Alabama>, <State:Alaska>, <State:Arizona>, <State:Arkansas>,...
@@ -111,3 +111,27 @@ If you know what region you want, you can explicitly request it: ::
 
     >>> us.states.MD.shapefile_urls('county')
     u'http://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip'
+
+
+CLI
+----
+
+When you need to know state information RIGHT AWAY, there's the `states` script.
+
+::
+
+    $ states md
+
+    *** The great state of Maryland (MD) ***
+
+      FIPS code: 24
+
+      other attributes:
+        name_metaphone: MRLNT
+
+      shapefiles:
+        county: http://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip
+        state: http://www2.census.gov/geo/tiger/TIGER2010/STATE/2010/tl_2010_24_state10.zip
+        cd: http://www2.census.gov/geo/tiger/TIGER2010/CD/111/tl_2010_24_cd111.zip
+        zcta: http://www2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_24_zcta510.zip
+        tract: http://www2.census.gov/geo/tiger/TIGER2010/TRACT/2010/tl_2010_24_tract10.zip
