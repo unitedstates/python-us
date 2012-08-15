@@ -1,7 +1,7 @@
 US: The Greatest Package in the World
 =====================================
 
-A package for easily work with US and state metadata.
+A package for easily working with US and state metadata.
 
 * all US states and territories
 * abbreviations
