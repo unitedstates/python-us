@@ -1,0 +1,3 @@
+*.pyc
+MANIFEST
+__pycache__/

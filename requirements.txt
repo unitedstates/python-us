@@ -1,0 +1,2 @@
+Metaphone==0.4
+requests==0.13.6
