@@ -113,10 +113,24 @@ If you know what region you want, you can explicitly request it: ::
     u'http://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip'
 
 
+Mappings
+--------
+
+Mappings between various state attributes are a common need. The `mapping()`
+method will generate a lookup between two specified fields.
+
+::
+
+    >>> us.states.mapping('fips', 'abbr')
+    {u'30': u'MT', u'54': u'WV', u'42': u'PA', u'48': u'TX', u'45': u'SC',...
+    >>> us.states.mapping('abbr', 'name')
+    {u'WA': u'Washington', u'VA': u'Virginia', u'DE': u'Delaware',...
+
+
 CLI
 ----
 
-When you need to know state information RIGHT AWAY, there's the `states` script.
+When you need to know state information RIGHT AWAY, there's the *states* script.
 
 ::
 
@@ -135,3 +149,17 @@ When you need to know state information RIGHT AWAY, there's the `states` script.
         cd: http://www2.census.gov/geo/tiger/TIGER2010/CD/111/tl_2010_24_cd111.zip
         zcta: http://www2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_24_zcta510.zip
         tract: http://www2.census.gov/geo/tiger/TIGER2010/TRACT/2010/tl_2010_24_tract10.zip
+
+
+Contributing
+------------
+
+Your contributions are welcomed!
+
+State data is stored in *data.db* and pickled using the *build.py* script.
+If you modify *data.db*, please be sure to run the build script before
+submitting a pull request.
+
+Any changes other than additions to *data.db* should come with appropriate
+tests in *test.py*. Also check to see if the *states* CLI script should be
+modified to accommodate your change.
