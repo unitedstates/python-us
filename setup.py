@@ -9,6 +9,7 @@ setup(
     author="Jeremy Carbaugh",
     author_email="jcarbaugh@sunlightfoundation.com",
     url='https://github.com/sunlightlabs/python-us',
+    description='US state meta information and other fun stuff',
     long_description=long_description,
     license='BSD',
     packages=find_packages(),
