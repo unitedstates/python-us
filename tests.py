@@ -1,6 +1,4 @@
-import random
 import unittest
-
 import requests
 
 import us
@@ -33,6 +31,18 @@ class MarylandLookupTestCase(unittest.TestCase):
         self.assertEqual(us.states.lookup('maryland', field='name'), None)
         self.assertEqual(us.states.lookup('murryland'), us.states.MD)
         self.assertNotEqual(us.states.lookup('Virginia'), us.states.MD)
+
+
+class MappingTestCase(unittest.TestCase):
+
+    def test_mapping(self):
+
+        states = us.STATES[:5]
+
+        self.assertEqual(
+            us.states.mapping('abbr', 'fips', states=states),
+            {s.abbr: s.fips for s in states})
+
 
 class ShapefileTestCase(unittest.TestCase):
 
