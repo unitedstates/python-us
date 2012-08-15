@@ -15,5 +15,7 @@ setup(
     package_data={'us': ['*.pkl']},
     include_package_data=True,
     install_requires=['metaphone'],
+    entry_points={
+        'console_scripts': ['states = us.cli.states:main']},
     platforms=['any'],
 )
