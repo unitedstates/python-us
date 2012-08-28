@@ -144,6 +144,8 @@ When you need to know state information RIGHT AWAY, there's the *states* script.
 
       other attributes:
         name_metaphone: MRLNT
+        statehood_year: 1788
+        capital: Annapolis
 
       shapefiles:
         county: http://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip
