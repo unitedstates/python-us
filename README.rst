@@ -6,6 +6,8 @@ A package for easily working with US and state metadata.
 * all US states and territories
 * abbreviations
 * FIPS codes
+* capitals
+* years of statehood
 * phonetic state name lookup
 * URLs to shapefiles for state, census, congressional districts,
   counties, and census tracts
@@ -163,3 +165,31 @@ submitting a pull request.
 Any changes other than additions to *data.db* should come with appropriate
 tests in *test.py*. Also check to see if the *states* CLI script should be
 modified to accommodate your change.
+
+Changelog
+---------
+
+0.4
+~~~
+
+* add state capitals
+* add years of statehood
+
+0.3
+~~~
+
+* add mapping method to generate dicts of arbitrary fields
+
+0.2
+~~~
+
+* add command line script for quick access to state data
+
+0.1
+~~~
+
+* initial release
+* state names and abbreviations
+* FIPS codes
+* lookup() method
+* shapefile URLs for various regions
