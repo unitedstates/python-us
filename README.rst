@@ -171,6 +171,11 @@ modified to accommodate your change.
 Changelog
 ---------
 
+0.5
+~~~
+
+* fix state abbreviation for Nebraska
+
 0.4
 ~~~
 
