@@ -4,7 +4,8 @@ US: The Greatest Package in the World
 A package for easily working with US and state metadata.
 
 * all US states and territories
-* abbreviations
+* postal abbreviations
+* Associated Press style abbreviations
 * FIPS codes
 * capitals
 * years of statehood
