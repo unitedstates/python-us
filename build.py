@@ -3,7 +3,7 @@ import pickle
 import sqlite3
 import sys
 
-from metaphone import doublemetaphone
+import jellyfish
 
 PWD = os.path.abspath(os.path.dirname(__file__))
 
@@ -25,7 +25,7 @@ def pickle_data():
     states = []
 
     for row in c:
-        row['name_metaphone'] = doublemetaphone(row['name'])[0]
+        row['name_metaphone'] = jellyfish.metaphone(row['name'])
         row['is_territory'] = row['is_territory'] == 1
         states.append(row)
 

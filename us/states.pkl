@@ -6,7 +6,7 @@ VAlabama
 p3
 sS'name_metaphone'
 p4
-S'ALPM'
+S'ALBM'
 p5
 sS'statehood_year'
 p6
@@ -58,7 +58,7 @@ g2
 VAmerican Samoa
 p24
 sg4
-S'AMRKNSM'
+S'AMRKN SM'
 p25
 sg6
 Nsg7
@@ -193,7 +193,7 @@ g2
 VDelaware
 p65
 sg4
-S'TLR'
+S'TLWR'
 p66
 sg6
 I1787
@@ -216,7 +216,7 @@ g2
 VDistrict of Columbia
 p72
 sg4
-S'TSTRKTFKLMP'
+S'TSTRKT OF KLMB'
 p73
 sg6
 Nsg7
@@ -302,7 +302,7 @@ g2
 VHawaii
 p98
 sg4
-S'H'
+S'HW'
 p99
 sg6
 I1959
@@ -325,7 +325,7 @@ g2
 VIdaho
 p105
 sg4
-S'ATH'
+S'ITH'
 p106
 sg6
 I1890
@@ -348,7 +348,7 @@ g2
 VIllinois
 p112
 sg4
-S'ALN'
+S'ILNS'
 p113
 sg6
 I1818
@@ -371,7 +371,7 @@ g2
 VIndiana
 p119
 sg4
-S'ANTN'
+S'INTN'
 p120
 sg6
 I1816
@@ -394,7 +394,7 @@ g2
 VIowa
 p126
 sg4
-S'A'
+S'IW'
 p127
 sg6
 I1846
@@ -463,7 +463,7 @@ g2
 VLouisiana
 p147
 sg4
-S'LSN'
+S'LXN'
 p148
 sg6
 I1812
@@ -532,7 +532,7 @@ g2
 VMassachusetts
 p168
 sg4
-S'MSKSTS'
+S'MSXSTS'
 p169
 sg6
 I1788
@@ -670,7 +670,7 @@ g2
 VNebraska
 p210
 sg4
-S'NPRSK'
+S'NBRSK'
 p211
 sg6
 I1867
@@ -716,7 +716,7 @@ g2
 VNew Hampshire
 p224
 sg4
-S'NMPXR'
+S'N HMPXR'
 p225
 sg6
 I1788
@@ -739,7 +739,7 @@ g2
 VNew Jersey
 p231
 sg4
-S'NJRS'
+S'N JRS'
 p232
 sg6
 I1787
@@ -762,7 +762,7 @@ g2
 VNew Mexico
 p238
 sg4
-S'NMKSK'
+S'N MKSK'
 p239
 sg6
 I1912
@@ -785,7 +785,7 @@ g2
 VNew York
 p245
 sg4
-S'NRK'
+S'N YRK'
 p246
 sg6
 I1788
@@ -808,7 +808,7 @@ g2
 VNorth Carolina
 p252
 sg4
-S'NR0KRLN'
+S'NR0 KRLN'
 p253
 sg6
 I1789
@@ -831,7 +831,7 @@ g2
 VNorth Dakota
 p259
 sg4
-S'NR0TKT'
+S'NR0 TKT'
 p260
 sg6
 I1889
@@ -854,7 +854,7 @@ g2
 VNorthern Mariana Islands
 p266
 sg4
-S'NR0RNMRNLNTS'
+S'NR0RN MRN ISLNTS'
 p267
 sg6
 Nsg7
@@ -874,7 +874,7 @@ g2
 VOhio
 p272
 sg4
-S'AH'
+S'OH'
 p273
 sg6
 I1803
@@ -897,7 +897,7 @@ g2
 VOklahoma
 p279
 sg4
-S'AKLHM'
+S'OKLHM'
 p280
 sg6
 I1907
@@ -920,7 +920,7 @@ g2
 VOregon
 p286
 sg4
-S'ARKN'
+S'ORKN'
 p287
 sg6
 I1859
@@ -966,7 +966,7 @@ g2
 VPuerto Rico
 p300
 sg4
-S'PRTRK'
+S'PRT RK'
 p301
 sg6
 Nsg7
@@ -986,7 +986,7 @@ g2
 VRhode Island
 p306
 sg4
-S'RTLNT'
+S'RHT ISLNT'
 p307
 sg6
 I1790
@@ -1009,7 +1009,7 @@ g2
 VSouth Carolina
 p313
 sg4
-S'S0KRLN'
+S'S0 KRLN'
 p314
 sg6
 I1788
@@ -1032,7 +1032,7 @@ g2
 VSouth Dakota
 p320
 sg4
-S'S0TKT'
+S'S0 TKT'
 p321
 sg6
 I1889
@@ -1101,7 +1101,7 @@ g2
 VUtah
 p341
 sg4
-S'AT'
+S'UT'
 p342
 sg6
 I1896
@@ -1147,7 +1147,7 @@ g2
 VVirgin Islands
 p355
 sg4
-S'FRJNLNTS'
+S'FRJN ISLNTS'
 p356
 sg6
 Nsg7
@@ -1190,7 +1190,7 @@ g2
 VWashington
 p368
 sg4
-S'AXNKTN'
+S'WXNKTN'
 p369
 sg6
 I1889
@@ -1213,7 +1213,7 @@ g2
 VWest Virginia
 p375
 sg4
-S'ASTFRJN'
+S'WST FRJN'
 p376
 sg6
 I1863
@@ -1236,7 +1236,7 @@ g2
 VWisconsin
 p382
 sg4
-S'ASKNSN'
+S'WSKNSN'
 p383
 sg6
 I1848
@@ -1259,7 +1259,7 @@ g2
 VWyoming
 p389
 sg4
-S'AMNK'
+S'YMNK'
 p390
 sg6
 I1890

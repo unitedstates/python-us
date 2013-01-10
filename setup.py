@@ -15,7 +15,7 @@ setup(
     packages=find_packages(),
     package_data={'us': ['*.pkl']},
     include_package_data=True,
-    install_requires=['metaphone'],
+    install_requires=['jellyfish==0.2.0'],
     entry_points={
         'console_scripts': ['states = us.cli.states:main']},
     platforms=['any'],

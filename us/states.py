@@ -85,7 +85,7 @@ def lookup(val, field=None, use_cache=True):
         with the `use_cache=False` argument.
     """
 
-    from metaphone import doublemetaphone
+    import jellyfish
 
     if field is None:
         if FIPS_RE.match(val):
@@ -94,7 +94,7 @@ def lookup(val, field=None, use_cache=True):
             val = val.upper()
             field = 'abbr'
         else:
-            val = doublemetaphone(val)[0]
+            val = jellyfish.metaphone(val)
             field = 'name_metaphone'
 
     # see if result is in cache

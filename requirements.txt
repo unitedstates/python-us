@@ -1,2 +1,4 @@
-Metaphone==0.4
-requests==0.13.6
+jellyfish==0.2.0
+
+# only required for tests
+requests==1.0.4
