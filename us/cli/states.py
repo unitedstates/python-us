@@ -30,10 +30,14 @@ def main():
 
         sys.stdout.write("\n")
         sys.stdout.write("  other attributes:\n")
+
         for key in sorted(data.keys()):
+
             val = data[key]
-            if key == "time_zones":
+
+            if isinstance(val, (list, tuple)):
                 val = ", ".join(val)
+
             sys.stdout.write("    %s: %s\n" % (key, val))
 
         sys.stdout.write("\n")
