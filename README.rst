@@ -173,6 +173,11 @@ modified to accommodate your change.
 Changelog
 ---------
 
+0.7dev
+~~~~~~
+
+* Python 2.6 and 3.2 compatibility
+
 0.6
 ~~~
 
