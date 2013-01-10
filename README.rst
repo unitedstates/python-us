@@ -144,8 +144,9 @@ When you need to know state information RIGHT AWAY, there's the *states* script.
       FIPS code: 24
 
       other attributes:
-        name_metaphone: MRLNT
         statehood_year: 1788
+        ap_abbr: Md.
+        name_metaphone: MRLNT
         capital: Annapolis
 
       shapefiles:
