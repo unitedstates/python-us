@@ -172,6 +172,11 @@ modified to accommodate your change.
 Changelog
 ---------
 
+0.6dev
+~~~~~~
+
+* add AP-style state abbreviations
+
 0.5
 ~~~
 
