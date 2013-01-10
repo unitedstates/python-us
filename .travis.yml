@@ -1,10 +1,12 @@
 language: python
 python:
-  - 2.5
   - 2.6
   - 2.7
+  - 3.0
+  - 3.1
   - 3.2
   - 3.3
-script: nosetests
+  - pypy
 install:
-  - pip install nose requests==1.0.4 jellyfish==0.2.0
+  - pip install -r requirements.txt --use-mirrors
+script: nosetests
