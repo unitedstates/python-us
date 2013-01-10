@@ -24,16 +24,21 @@ class State(object):
         return self.name
 
     def shapefile_urls(self, region=None):
-        base_url = "http://www2.census.gov/geo/tiger/TIGER2010"
+
+        base_url = "http://www2.census.gov/geo/tiger/TIGER2012"
+
         urls = {
-            'tract': base_url + '/TRACT/2010/tl_2010_%s_tract10.zip' % self.fips,
-            'cd': base_url + '/CD/111/tl_2010_%s_cd111.zip' % self.fips,
-            'county': base_url + '/COUNTY/2010/tl_2010_%s_county10.zip' % self.fips,
-            'state': base_url + '/STATE/2010/tl_2010_%s_state10.zip' % self.fips,
-            'zcta': base_url + '/ZCTA5/2010/tl_2010_%s_zcta510.zip' % self.fips,
+            'tract': base_url + '/TRACT/tl_2012_%s_tract.zip' % self.fips,
         }
-        if region and region in urls:
-            return urls[region]
+
+        if region:
+
+            if region in ('cd', 'county', 'state', 'zcta'):
+                raise ValueError('the specified region is available only at the national level for 2012')
+
+            if region in urls:
+                return urls[region]
+
         return urls
 
 

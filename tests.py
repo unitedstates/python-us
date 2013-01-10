@@ -46,13 +46,19 @@ class MappingTestCase(unittest.TestCase):
 
 class ShapefileTestCase(unittest.TestCase):
 
-    def test_head(self):
+    def test_state_head(self):
 
         for state in us.STATES_AND_TERRITORIES:
 
             for region, url in state.shapefile_urls().items():
                 resp = requests.head(url)
                 self.assertEqual(resp.status_code, 200)
+
+    def test_national_head(self):
+
+        for region, url in us.shapefile_urls().items():
+            resp = requests.head(url)
+            self.assertEqual(resp.status_code, 200)
 
 
 if __name__ == '__main__':
