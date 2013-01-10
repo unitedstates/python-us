@@ -9,6 +9,7 @@ A package for easily working with US and state metadata.
 * FIPS codes
 * capitals
 * years of statehood
+* time zones
 * phonetic state name lookup
 * URLs to shapefiles for state, census, congressional districts,
   counties, and census tracts
@@ -178,6 +179,7 @@ Changelog
 0.7dev
 ~~~~~~
 
+* added time_zones and capital_tz fields
 * Python 2.6 and 3.2 compatibility
 
 0.6
