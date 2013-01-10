@@ -176,6 +176,9 @@ Changelog
 ~~~~~~
 
 * add AP-style state abbreviations
+* use jellyfish instead of Metaphone package
+* update to requests v1.0.4 for tests
+* Python 3.3 compatibility
 
 0.5
 ~~~
