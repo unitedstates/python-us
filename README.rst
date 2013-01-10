@@ -173,8 +173,8 @@ modified to accommodate your change.
 Changelog
 ---------
 
-0.6dev
-~~~~~~
+0.6
+~~~
 
 * add AP-style state abbreviations
 * use jellyfish instead of Metaphone package
