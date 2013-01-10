@@ -144,10 +144,12 @@ When you need to know state information RIGHT AWAY, there's the *states* script.
       FIPS code: 24
 
       other attributes:
-        statehood_year: 1788
         ap_abbr: Md.
-        name_metaphone: MRLNT
         capital: Annapolis
+        capital_tz: America/New_York
+        name_metaphone: MRLNT
+        statehood_year: 1788
+        time_zones: America/New_York
 
       shapefiles:
         county: http://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip

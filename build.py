@@ -1,7 +1,6 @@
 import os
 import pickle
 import sqlite3
-import sys
 
 import jellyfish
 
@@ -9,7 +8,7 @@ PWD = os.path.abspath(os.path.dirname(__file__))
 
 
 def dict_factory(cursor, row):
-    return {col[0]: row[idx] for idx, col in enumerate(cursor.description)}
+    return dict((col[0], row[idx]) for idx, col in enumerate(cursor.description))
 
 
 def pickle_data():
@@ -27,6 +26,7 @@ def pickle_data():
     for row in c:
         row['name_metaphone'] = jellyfish.metaphone(row['name'])
         row['is_territory'] = row['is_territory'] == 1
+        row['time_zones'] = row['time_zones'].split(',')
         states.append(row)
 
     pkl_path = os.path.abspath(os.path.join(PWD, 'us', 'states.pkl'))

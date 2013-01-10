@@ -30,8 +30,11 @@ def main():
 
         sys.stdout.write("\n")
         sys.stdout.write("  other attributes:\n")
-        for attr, val in data.items():
-            sys.stdout.write("    %s: %s\n" % (attr, val))
+        for key in sorted(data.keys()):
+            val = data[key]
+            if key == "time_zones":
+                val = ", ".join(val)
+            sys.stdout.write("    %s: %s\n" % (key, val))
 
         sys.stdout.write("\n")
         sys.stdout.write("  shapefiles:\n")
