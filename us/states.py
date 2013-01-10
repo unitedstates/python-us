@@ -111,7 +111,7 @@ def lookup(val, field=None, use_cache=True):
 def mapping(from_field, to_field, states=None):
     if states is None:
         states = STATES_AND_TERRITORIES
-    return {getattr(s, from_field): getattr(s, to_field) for s in states}
+    return dict((getattr(s, from_field), getattr(s, to_field)) for s in states)
 
 
 load_states()

@@ -41,7 +41,7 @@ class MappingTestCase(unittest.TestCase):
 
         self.assertEqual(
             us.states.mapping('abbr', 'fips', states=states),
-            {s.abbr: s.fips for s in states})
+            dict((s.abbr, s.fips) for s in states))
 
 
 class ShapefileTestCase(unittest.TestCase):
