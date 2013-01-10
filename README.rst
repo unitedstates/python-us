@@ -179,7 +179,7 @@ Changelog
 0.7
 ~~~~~~
 
-* add time zones, thanks to [Paul Tagliamonte](http://github.com/paultag)
+* add time zones, thanks to `Paul Tagliamonte <http://github.com/paultag>`_
 * Python 2.6 and 3.2 compatibility
 
 0.6
