@@ -31,6 +31,8 @@ class State(object):
             'county': base_url + '/COUNTY/2010/tl_2010_%s_county10.zip' % self.fips,
             'state': base_url + '/STATE/2010/tl_2010_%s_state10.zip' % self.fips,
             'zcta': base_url + '/ZCTA5/2010/tl_2010_%s_zcta510.zip' % self.fips,
+            'block': base_url + '/TABBLOCK/2010/tl_2010_%s_tabblock10.zip' % self.fips,
+            'blockgroup': base_url + '/BG/2010/tl_2010_%s_bg10.zip' % self.fips
         }
         if region and region in urls:
             return urls[region]
