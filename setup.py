@@ -8,7 +8,7 @@ setup(
     version=__version__,
     author="Jeremy Carbaugh",
     author_email="jcarbaugh@sunlightfoundation.com",
-    url='https://github.com/sunlightlabs/python-us',
+    url='https://github.com/unitedstates/python-us',
     description='US state meta information and other fun stuff',
     long_description=long_description,
     license='BSD',
