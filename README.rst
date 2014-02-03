@@ -1,6 +1,8 @@
 US: The Greatest Package in the World
 =====================================
 
+[![Travis CI](http://img.shields.io/travis-ci/unitedstates/python-us.png)](https://travis-ci.org/unitedstates/python-us)
+
 A package for easily working with US and state metadata.
 
 * all US states and territories
