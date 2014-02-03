@@ -176,8 +176,13 @@ modified to accommodate your change.
 Changelog
 ---------
 
+0.7.1
+~~~~~
+
+* upgrade to jellyfish 0.2.1 to fix metaphone case bug
+
 0.7
-~~~~~~
+~~~
 
 * add time zones, thanks to `Paul Tagliamonte <http://github.com/paultag>`_
 * Python 2.6 and 3.2 compatibility

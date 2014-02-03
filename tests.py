@@ -44,6 +44,13 @@ class MappingTestCase(unittest.TestCase):
             dict((s.abbr, s.fips) for s in states))
 
 
+class KnownBugsTestCase(unittest.TestCase):
+
+    def test_kentucky_uppercase(self):
+        self.assertEqual(us.states.lookup('kentucky'), us.states.KY)
+        self.assertEqual(us.states.lookup('KENTUCKY'), us.states.KY)
+
+
 class ShapefileTestCase(unittest.TestCase):
 
     def test_head(self):
