@@ -67,6 +67,11 @@ accessed directly from the `us` module: ::
     >>> us.STATES
     [<State:Alabama>, <State:Alaska>, <State:Arizona>, <State:Arkansas>,...
 
+There's also a list of obsolete territories: ::
+
+    >>> us.states.OBSOLETE
+    [<State:Dakota>, <State:Orleans>, <State:Philippine Islands>]
+
 The state lookup method allows matching by FIPS code, abbreviation, and name: ::
 
     >>> us.states.lookup('24')
