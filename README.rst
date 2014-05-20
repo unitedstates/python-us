@@ -148,16 +148,19 @@ When you need to know state information RIGHT AWAY, there's the *states* script.
         ap_abbr: Md.
         capital: Annapolis
         capital_tz: America/New_York
+        is_obsolete: False
         name_metaphone: MRLNT
         statehood_year: 1788
         time_zones: America/New_York
 
       shapefiles:
+        blockgroup: http://www2.census.gov/geo/tiger/TIGER2010/BG/2010/tl_2010_24_bg10.zip
+        cd: http://www2.census.gov/geo/tiger/TIGER2010/CD/111/tl_2010_24_cd111.zip
         county: http://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip
         state: http://www2.census.gov/geo/tiger/TIGER2010/STATE/2010/tl_2010_24_state10.zip
-        cd: http://www2.census.gov/geo/tiger/TIGER2010/CD/111/tl_2010_24_cd111.zip
-        zcta: http://www2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_24_zcta510.zip
         tract: http://www2.census.gov/geo/tiger/TIGER2010/TRACT/2010/tl_2010_24_tract10.zip
+        zcta: http://www2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_24_zcta510.zip
+        block: http://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2010/tl_2010_24_tabblock10.zip
 
 
 Contributing
@@ -176,6 +179,13 @@ modified to accommodate your change.
 Changelog
 ---------
 
+0.8.0
+~~~~~
+
+* add obsolete territories, thanks to `Ben Chartoff <https://github.com/bchartoff>`_
+* fix packaging error, thanks to `Alexander Kulakov <https://github.com/momyc>`_
+
+
 0.7.1
 ~~~~~
 
@@ -184,7 +194,7 @@ Changelog
 0.7
 ~~~
 
-* add time zones, thanks to `Paul Tagliamonte <http://github.com/paultag>`_
+* add time zones, thanks to `Paul Tagliamonte <https://github.com/paultag>`_
 * Python 2.6 and 3.2 compatibility
 
 0.6
