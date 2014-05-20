@@ -25,6 +25,10 @@ class State(object):
         return self.name
 
     def shapefile_urls(self, region=None):
+
+        if not self.fips:
+            return {}
+
         base_url = "http://www2.census.gov/geo/tiger/TIGER2010"
         urls = {
             'tract': base_url + '/TRACT/2010/tl_2010_%s_tract10.zip' % self.fips,
@@ -35,8 +39,10 @@ class State(object):
             'block': base_url + '/TABBLOCK/2010/tl_2010_%s_tabblock10.zip' % self.fips,
             'blockgroup': base_url + '/BG/2010/tl_2010_%s_bg10.zip' % self.fips
         }
+
         if region and region in urls:
             return urls[region]
+
         return urls
 
 
