@@ -29,7 +29,7 @@ VAL
 p14
 sS'is_obsolete'
 p15
-I0
+I00
 sS'time_zones'
 p16
 (lp17
@@ -64,7 +64,7 @@ sg13
 VAK
 p28
 sg15
-I0
+I00
 sg16
 (lp29
 VAmerica/Anchorage
@@ -95,7 +95,7 @@ sg13
 VAS
 p38
 sg15
-I0
+I00
 sg16
 (lp39
 VPacific/Samoa
@@ -127,7 +127,7 @@ sg13
 VAZ
 p48
 sg15
-I0
+I00
 sg16
 (lp49
 VAmerica/Denver
@@ -159,7 +159,7 @@ sg13
 VAR
 p58
 sg15
-I0
+I00
 sg16
 (lp59
 VAmerica/Chicago
@@ -191,7 +191,7 @@ sg13
 VCA
 p68
 sg15
-I0
+I00
 sg16
 (lp69
 VAmerica/Los_Angeles
@@ -223,7 +223,7 @@ sg13
 VCO
 p78
 sg15
-I0
+I00
 sg16
 (lp79
 VAmerica/Denver
@@ -255,7 +255,7 @@ sg13
 VCT
 p88
 sg15
-I0
+I00
 sg16
 (lp89
 VAmerica/New_York
@@ -282,7 +282,7 @@ Nsg13
 VDK
 p96
 sg15
-I1
+I01
 sg16
 (lp97
 VAmerica/Chicago
@@ -314,7 +314,7 @@ sg13
 VDE
 p106
 sg15
-I0
+I00
 sg16
 (lp107
 VAmerica/New_York
@@ -343,7 +343,7 @@ sg13
 VDC
 p115
 sg15
-I0
+I00
 sg16
 (lp116
 VAmerica/New_York
@@ -375,7 +375,7 @@ sg13
 VFL
 p125
 sg15
-I0
+I00
 sg16
 (lp126
 VAmerica/New_York
@@ -409,7 +409,7 @@ sg13
 VGA
 p136
 sg15
-I0
+I00
 sg16
 (lp137
 VAmerica/New_York
@@ -438,7 +438,7 @@ sg13
 VGU
 p145
 sg15
-I0
+I00
 sg16
 (lp146
 VPacific/Guam
@@ -470,7 +470,7 @@ sg13
 VHI
 p155
 sg15
-I0
+I00
 sg16
 (lp156
 VPacific/Honolulu
@@ -502,7 +502,7 @@ sg13
 VID
 p165
 sg15
-I0
+I00
 sg16
 (lp166
 VAmerica/Denver
@@ -536,7 +536,7 @@ sg13
 VIL
 p176
 sg15
-I0
+I00
 sg16
 (lp177
 VAmerica/Chicago
@@ -568,7 +568,7 @@ sg13
 VIN
 p186
 sg15
-I0
+I00
 sg16
 (lp187
 VAmerica/Indiana/Indianapolis
@@ -618,7 +618,7 @@ sg13
 VIA
 p205
 sg15
-I0
+I00
 sg16
 (lp206
 VAmerica/Chicago
@@ -650,7 +650,7 @@ sg13
 VKS
 p215
 sg15
-I0
+I00
 sg16
 (lp216
 VAmerica/Chicago
@@ -684,7 +684,7 @@ sg13
 VKY
 p226
 sg15
-I0
+I00
 sg16
 (lp227
 VAmerica/New_York
@@ -722,7 +722,7 @@ sg13
 VLA
 p239
 sg15
-I0
+I00
 sg16
 (lp240
 VAmerica/Chicago
@@ -754,7 +754,7 @@ sg13
 VME
 p249
 sg15
-I0
+I00
 sg16
 (lp250
 VAmerica/New_York
@@ -786,7 +786,7 @@ sg13
 VMD
 p259
 sg15
-I0
+I00
 sg16
 (lp260
 VAmerica/New_York
@@ -818,7 +818,7 @@ sg13
 VMA
 p269
 sg15
-I0
+I00
 sg16
 (lp270
 VAmerica/New_York
@@ -850,7 +850,7 @@ sg13
 VMI
 p279
 sg15
-I0
+I00
 sg16
 (lp280
 VAmerica/New_York
@@ -884,7 +884,7 @@ sg13
 VMN
 p290
 sg15
-I0
+I00
 sg16
 (lp291
 VAmerica/Chicago
@@ -916,7 +916,7 @@ sg13
 VMS
 p300
 sg15
-I0
+I00
 sg16
 (lp301
 VAmerica/Chicago
@@ -948,7 +948,7 @@ sg13
 VMO
 p310
 sg15
-I0
+I00
 sg16
 (lp311
 VAmerica/Chicago
@@ -980,7 +980,7 @@ sg13
 VMT
 p320
 sg15
-I0
+I00
 sg16
 (lp321
 VAmerica/Denver
@@ -1012,7 +1012,7 @@ sg13
 VNE
 p330
 sg15
-I0
+I00
 sg16
 (lp331
 VAmerica/Chicago
@@ -1046,7 +1046,7 @@ sg13
 VNV
 p341
 sg15
-I0
+I00
 sg16
 (lp342
 VAmerica/Los_Angeles
@@ -1080,7 +1080,7 @@ sg13
 VNH
 p352
 sg15
-I0
+I00
 sg16
 (lp353
 VAmerica/New_York
@@ -1112,7 +1112,7 @@ sg13
 VNJ
 p362
 sg15
-I0
+I00
 sg16
 (lp363
 VAmerica/New_York
@@ -1144,7 +1144,7 @@ sg13
 VNM
 p372
 sg15
-I0
+I00
 sg16
 (lp373
 VAmerica/Chicago
@@ -1176,7 +1176,7 @@ sg13
 VNY
 p382
 sg15
-I0
+I00
 sg16
 (lp383
 VAmerica/New_York
@@ -1208,7 +1208,7 @@ sg13
 VNC
 p392
 sg15
-I0
+I00
 sg16
 (lp393
 VAmerica/New_York
@@ -1240,7 +1240,7 @@ sg13
 VND
 p402
 sg15
-I0
+I00
 sg16
 (lp403
 VAmerica/North_Dakota/Center
@@ -1275,7 +1275,7 @@ sg13
 VMP
 p414
 sg15
-I0
+I00
 sg16
 (lp415
 VPacific/Guam
@@ -1307,7 +1307,7 @@ sg13
 VOH
 p424
 sg15
-I0
+I00
 sg16
 (lp425
 VAmerica/New_York
@@ -1339,7 +1339,7 @@ sg13
 VOK
 p434
 sg15
-I0
+I00
 sg16
 (lp435
 VAmerica/Chicago
@@ -1371,7 +1371,7 @@ sg13
 VOR
 p444
 sg15
-I0
+I00
 sg16
 (lp445
 VAmerica/Los_Angeles
@@ -1398,7 +1398,7 @@ Nsg13
 VOL
 p452
 sg15
-I1
+I01
 sg16
 (lp453
 VAmerica/Chicago
@@ -1428,7 +1428,7 @@ sg13
 VPA
 p461
 sg15
-I0
+I00
 sg16
 (lp462
 VAmerica/New_York
@@ -1453,7 +1453,7 @@ Nsg13
 VPI
 p468
 sg15
-I1
+I01
 sg16
 (lp469
 VAsia/Singapore
@@ -1480,7 +1480,7 @@ sg13
 VPR
 p476
 sg15
-I0
+I00
 sg16
 (lp477
 VAmerica/Puerto_Rico
@@ -1512,7 +1512,7 @@ sg13
 VRI
 p486
 sg15
-I0
+I00
 sg16
 (lp487
 VAmerica/New_York
@@ -1544,7 +1544,7 @@ sg13
 VSC
 p496
 sg15
-I0
+I00
 sg16
 (lp497
 VAmerica/New_York
@@ -1576,7 +1576,7 @@ sg13
 VSD
 p506
 sg15
-I0
+I00
 sg16
 (lp507
 VAmerica/Chicago
@@ -1610,7 +1610,7 @@ sg13
 VTN
 p517
 sg15
-I0
+I00
 sg16
 (lp518
 VAmerica/Chicago
@@ -1644,7 +1644,7 @@ sg13
 VTX
 p528
 sg15
-I0
+I00
 sg16
 (lp529
 VAmerica/Chicago
@@ -1678,7 +1678,7 @@ sg13
 VUT
 p539
 sg15
-I0
+I00
 sg16
 (lp540
 VAmerica/Denver
@@ -1710,7 +1710,7 @@ sg13
 VVT
 p549
 sg15
-I0
+I00
 sg16
 (lp550
 VAmerica/New_York
@@ -1739,7 +1739,7 @@ sg13
 VVI
 p558
 sg15
-I0
+I00
 sg16
 (lp559
 VAmerica/Puerto_Rico
@@ -1771,7 +1771,7 @@ sg13
 VVA
 p568
 sg15
-I0
+I00
 sg16
 (lp569
 VAmerica/New_York
@@ -1803,7 +1803,7 @@ sg13
 VWA
 p578
 sg15
-I0
+I00
 sg16
 (lp579
 VAmerica/Los_Angeles
@@ -1835,7 +1835,7 @@ sg13
 VWV
 p588
 sg15
-I0
+I00
 sg16
 (lp589
 VAmerica/New_York
@@ -1867,7 +1867,7 @@ sg13
 VWI
 p598
 sg15
-I0
+I00
 sg16
 (lp599
 VAmerica/Chicago
@@ -1899,7 +1899,7 @@ sg13
 VWY
 p608
 sg15
-I0
+I00
 sg16
 (lp609
 VAmerica/Denver
