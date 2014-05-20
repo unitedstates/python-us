@@ -62,5 +62,18 @@ class ShapefileTestCase(unittest.TestCase):
                 self.assertEqual(resp.status_code, 200)
 
 
+class CountsTestCase(unittest.TestCase):
+
+    def test_obsolete(self):
+        self.assertEqual(len(us.OBSOLETE), 3)
+
+    def test_states(self):
+        self.assertEqual(len(us.STATES), 51)
+
+    def test_territories(self):
+        self.assertEqual(len(us.TERRITORIES), 5)
+
+
+
 if __name__ == '__main__':
     unittest.main()
