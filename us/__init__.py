@@ -1,6 +1,6 @@
 from . import states
-from .states import STATES, TERRITORIES, STATES_AND_TERRITORIES
+from .states import STATES, TERRITORIES, STATES_AND_TERRITORIES, OBSOLETE
 from .unitedstatesofamerica import *
 
 __appname__ = 'us'
-__version__ = '0.7.1'
+__version__ = '0.8.0'

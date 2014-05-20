@@ -6,6 +6,7 @@ ABBR_RE = re.compile(r'^[a-zA-Z]{2}$')
 
 STATES = []
 TERRITORIES = []
+OBSOLETE = []
 STATES_AND_TERRITORIES = []
 
 _lookup_cache = {}
@@ -55,8 +56,10 @@ def load_states():
 
             state = State(**s)  # create state object
 
-            # create separate lists for states and territories
-            if state.is_territory:
+            # create separate lists for obsolete, states, and territories
+            if state.is_obsolete:
+                OBSOLETE.append(state)
+            elif state.is_territory:
                 TERRITORIES.append(state)
             else:
                 STATES.append(state)
