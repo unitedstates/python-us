@@ -73,6 +73,13 @@ class CountsTestCase(unittest.TestCase):
     def test_territories(self):
         self.assertEqual(len(us.TERRITORIES), 5)
 
+    def test_contiguous(self):
+        # Lower 48 + DC
+        self.assertEqual(len(us.STATES_CONTIGUOUS), 49)
+
+    def test_continental(self):
+        # Lower 48 + DC + Alaska
+        self.assertEqual(len(us.STATES_CONTINENTAL), 50)
 
 
 if __name__ == '__main__':

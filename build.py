@@ -27,6 +27,8 @@ def pickle_data():
         row['name_metaphone'] = jellyfish.metaphone(row['name'])
         row['is_territory'] = row['is_territory'] == 1
         row['is_obsolete'] = row['is_obsolete'] == 1
+        row['is_contiguous'] = row['is_contiguous'] == 1
+        row['is_continental'] = row['is_continental'] == 1
         row['time_zones'] = row['time_zones'].split(',')
         states.append(row)
 

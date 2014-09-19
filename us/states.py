@@ -5,6 +5,8 @@ FIPS_RE = re.compile(r'^\d{2}$')
 ABBR_RE = re.compile(r'^[a-zA-Z]{2}$')
 
 STATES = []
+STATES_CONTIGUOUS = []
+STATES_CONTINENTAL = []
 TERRITORIES = []
 OBSOLETE = []
 STATES_AND_TERRITORIES = []
@@ -69,6 +71,11 @@ def load_states():
                 TERRITORIES.append(state)
             else:
                 STATES.append(state)
+
+                if state.is_contiguous:
+                    STATES_CONTIGUOUS.append(state)
+                if state.is_continental:
+                    STATES_CONTINENTAL.append(state)
 
             # also create list of all states and territories
             STATES_AND_TERRITORIES.append(state)
