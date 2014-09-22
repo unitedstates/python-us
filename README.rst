@@ -11,6 +11,7 @@ A package for easily working with US and state metadata.
 * years of statehood
 * time zones
 * phonetic state name lookup
+* is contiguous or continental
 * URLs to shapefiles for state, census, congressional districts,
   counties, and census tracts
 
@@ -37,6 +38,8 @@ Easy access to state information: ::
     u'24'
     >>> us.states.MD.name
     u'Maryland'
+    >>> us.states.MD.is_contiguous
+    True
 
 Includes territories too: ::
 
@@ -187,7 +190,7 @@ Changelog
 0.9.0
 ~~~~~
 
-* add information on whether a state is contiguous and/or continential,
+* add information on whether a state is contiguous and/or continental,
   thanks to `chebee7i <https://github.com/chebee7i>`_
 
 0.8.0
