@@ -1,3 +1,7 @@
+.. image:: https://travis-ci.org/unitedstates/python-us.svg?branch=master
+    :alt: Build Status
+    :target: http://travis-ci.org/unitedstates/python-us
+
 US: The Greatest Package in the World
 =====================================
 
