@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import pickle
 import re
 
@@ -33,13 +34,20 @@ class State(object):
 
         base_url = "http://www2.census.gov/geo/tiger/TIGER2010"
         urls = {
-            'tract': base_url + '/TRACT/2010/tl_2010_%s_tract10.zip' % self.fips,
-            'cd': base_url + '/CD/111/tl_2010_%s_cd111.zip' % self.fips,
-            'county': base_url + '/COUNTY/2010/tl_2010_%s_county10.zip' % self.fips,
-            'state': base_url + '/STATE/2010/tl_2010_%s_state10.zip' % self.fips,
-            'zcta': base_url + '/ZCTA5/2010/tl_2010_%s_zcta510.zip' % self.fips,
-            'block': base_url + '/TABBLOCK/2010/tl_2010_%s_tabblock10.zip' % self.fips,
-            'blockgroup': base_url + '/BG/2010/tl_2010_%s_bg10.zip' % self.fips
+            'tract': '{0}/TRACT/2010/tl_2010_{1}_tract10.zip'.format(
+                base_url, self.fips),
+            'cd': '{0}/CD/111/tl_2010_{1}_cd111.zip'.format(
+                base_url, self.fips),
+            'county': '{0}/COUNTY/2010/tl_2010_{1}_county10.zip'.format(
+                base_url, self.fips),
+            'state': '{0}/STATE/2010/tl_2010_{1}_state10.zip'.format(
+                base_url, self.fips),
+            'zcta': '{0}/ZCTA5/2010/tl_2010_{1}_zcta510.zip'.format(
+                base_url, self.fips),
+            'block': '{0}/TABBLOCK/2010/tl_2010_{1}_tabblock10.zip'.format(
+                base_url, self.fips),
+            'blockgroup': '{0}/BG/2010/tl_2010_{1}_bg10.zip'.format(
+                base_url, self.fips),
         }
 
         if region and region in urls:

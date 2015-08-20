@@ -15,7 +15,7 @@ setup(
     packages=find_packages(),
     package_data={'us': ['*.pkl']},
     include_package_data=True,
-    install_requires=['jellyfish==0.2.1'],
+    install_requires=['jellyfish==0.5.1'],
     entry_points={
         'console_scripts': ['states = us.cli.states:main']},
     platforms=['any'],
