@@ -34,13 +34,20 @@ class State(object):
 
         base_url = "http://www2.census.gov/geo/tiger/TIGER2010"
         urls = {
-            'tract': base_url + '/TRACT/2010/tl_2010_%s_tract10.zip' % self.fips,
-            'cd': base_url + '/CD/111/tl_2010_%s_cd111.zip' % self.fips,
-            'county': base_url + '/COUNTY/2010/tl_2010_%s_county10.zip' % self.fips,
-            'state': base_url + '/STATE/2010/tl_2010_%s_state10.zip' % self.fips,
-            'zcta': base_url + '/ZCTA5/2010/tl_2010_%s_zcta510.zip' % self.fips,
-            'block': base_url + '/TABBLOCK/2010/tl_2010_%s_tabblock10.zip' % self.fips,
-            'blockgroup': base_url + '/BG/2010/tl_2010_%s_bg10.zip' % self.fips
+            'tract': '{}/TRACT/2010/tl_2010_{}_tract10.zip'.format(
+                base_url, self.fips),
+            'cd': '{}/CD/111/tl_2010_{}_cd111.zip'.format(
+                base_url, self.fips),
+            'county': '{}/COUNTY/2010/tl_2010_{}_county10.zip'.format(
+                base_url, self.fips),
+            'state': '{}/STATE/2010/tl_2010_{}_state10.zip'.format(
+                base_url, self.fips),
+            'zcta': '{}/ZCTA5/2010/tl_2010_{}_zcta510.zip'.format(
+                base_url, self.fips),
+            'block': '{}/TABBLOCK/2010/tl_2010_{}_tabblock10.zip'.format(
+                base_url, self.fips),
+            'blockgroup': '{}/BG/2010/tl_2010_{}_bg10.zip'.format(
+                base_url, self.fips),
         }
 
         if region and region in urls:

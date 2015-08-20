@@ -28,7 +28,8 @@ class MarylandLookupTestCase(unittest.TestCase):
     def test_name(self):
         self.assertEqual(us.states.lookup('Maryland'), us.states.MD)
         self.assertEqual(us.states.lookup('maryland'), us.states.MD)
-        self.assertEqual(us.states.lookup('Maryland', field='name'), us.states.MD)
+        self.assertEqual(us.states.lookup('Maryland', field='name'),
+                         us.states.MD)
         self.assertEqual(us.states.lookup('maryland', field='name'), None)
         self.assertEqual(us.states.lookup('murryland'), us.states.MD)
         self.assertNotEqual(us.states.lookup('Virginia'), us.states.MD)
