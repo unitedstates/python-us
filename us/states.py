@@ -34,19 +34,19 @@ class State(object):
 
         base_url = "http://www2.census.gov/geo/tiger/TIGER2010"
         urls = {
-            'tract': '{}/TRACT/2010/tl_2010_{}_tract10.zip'.format(
+            'tract': '{0}/TRACT/2010/tl_2010_{1}_tract10.zip'.format(
                 base_url, self.fips),
-            'cd': '{}/CD/111/tl_2010_{}_cd111.zip'.format(
+            'cd': '{0}/CD/111/tl_2010_{1}_cd111.zip'.format(
                 base_url, self.fips),
-            'county': '{}/COUNTY/2010/tl_2010_{}_county10.zip'.format(
+            'county': '{0}/COUNTY/2010/tl_2010_{1}_county10.zip'.format(
                 base_url, self.fips),
-            'state': '{}/STATE/2010/tl_2010_{}_state10.zip'.format(
+            'state': '{0}/STATE/2010/tl_2010_{1}_state10.zip'.format(
                 base_url, self.fips),
-            'zcta': '{}/ZCTA5/2010/tl_2010_{}_zcta510.zip'.format(
+            'zcta': '{0}/ZCTA5/2010/tl_2010_{1}_zcta510.zip'.format(
                 base_url, self.fips),
-            'block': '{}/TABBLOCK/2010/tl_2010_{}_tabblock10.zip'.format(
+            'block': '{0}/TABBLOCK/2010/tl_2010_{1}_tabblock10.zip'.format(
                 base_url, self.fips),
-            'blockgroup': '{}/BG/2010/tl_2010_{}_bg10.zip'.format(
+            'blockgroup': '{0}/BG/2010/tl_2010_{1}_bg10.zip'.format(
                 base_url, self.fips),
         }
 
