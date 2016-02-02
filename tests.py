@@ -35,6 +35,21 @@ class MarylandLookupTestCase(unittest.TestCase):
         self.assertNotEqual(us.states.lookup('Virginia'), us.states.MD)
 
 
+class LookupTestCase(unittest.TestCase):
+
+    def test_abbr_lookup(self):
+        for state in us.STATES:
+            self.assertEqual(us.states.lookup(state.abbr), state)
+
+    def test_fips_lookup(self):
+        for state in us.STATES:
+            self.assertEqual(us.states.lookup(state.fips), state)
+
+    def test_name_lookup(self):
+        for state in us.STATES:
+            self.assertEqual(us.states.lookup(state.name), state)
+
+
 class MappingTestCase(unittest.TestCase):
 
     def test_mapping(self):
