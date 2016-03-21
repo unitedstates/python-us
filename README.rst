@@ -191,6 +191,11 @@ modified to accommodate your change.
 Changelog
 ---------
 
+0.10.0
+~~~~~~
+
+* upgrade jellyfish to 0.5.3 to fix metaphone bug
+
 0.9.0
 ~~~~~
 
@@ -207,7 +212,7 @@ Changelog
 0.7.1
 ~~~~~
 
-* upgrade to jellyfish 0.2.1 to fix metaphone case bug
+* upgrade to jellyfish 0.5.1 to fix metaphone case bug
 
 0.7
 ~~~
