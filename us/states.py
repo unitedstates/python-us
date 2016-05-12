@@ -59,7 +59,6 @@ class State(object):
         row_dict = {}
         row_dict['abbr'] = self.abbr
         row_dict['ap_abbr'] = self.ap_abbr
-        row_dict['ap_abbr'] = self.ap_abbr
         row_dict['capital'] = self.capital
         row_dict['capital_tz'] = self.capital_tz
         row_dict['fips'] = self.fips
