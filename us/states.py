@@ -55,6 +55,25 @@ class State(object):
 
         return urls
 
+    def to_dict(self):
+        row_dict = {}
+        row_dict['abbr'] = self.abbr
+        row_dict['ap_abbr'] = self.ap_abbr
+        row_dict['ap_abbr'] = self.ap_abbr
+        row_dict['capital'] = self.capital
+        row_dict['capital_tz'] = self.capital_tz
+        row_dict['fips'] = self.fips
+        row_dict['is_contiguous'] = self.is_contiguous
+        row_dict['is_continental'] = self.is_continental
+        row_dict['is_obsolete'] = self.is_obsolete
+        row_dict['is_territory'] = self.is_territory
+        row_dict['name'] = self.name
+        row_dict['name_metaphone'] = self.name_metaphone
+        row_dict['shapefile_urls'] = self.shapefile_urls
+        row_dict['statehood_year'] = self.statehood_year
+        row_dict['time_zones'] = self.time_zones
+
+        return row_dict
 
 def load_states():
     """ Load state data from pickle file distributed with this package.
@@ -138,6 +157,5 @@ def mapping(from_field, to_field, states=None):
     if states is None:
         states = STATES_AND_TERRITORIES
     return dict((getattr(s, from_field), getattr(s, to_field)) for s in states)
-
 
 load_states()
