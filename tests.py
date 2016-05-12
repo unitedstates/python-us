@@ -99,5 +99,13 @@ class CountsTestCase(unittest.TestCase):
         self.assertEqual(len(us.STATES_CONTINENTAL), 50)
 
 
+class StateToDictTestCase(unittest.TestCase):
+
+    def test_to_dict(self):
+        for state in us.STATES_AND_TERRITORIES:
+            state_dict = state.to_dict()
+            self.assertEqual(str(state), state_dict['name'])
+
+
 if __name__ == '__main__':
     unittest.main()
