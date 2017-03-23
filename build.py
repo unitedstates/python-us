@@ -51,7 +51,8 @@ def pickle_county_data():
     counties = []
 
     for row in c:
-        row['name_metaphone'] = jellyfish.metaphone(row['name'])
+        row['name_metaphone'] = jellyfish.metaphone(row['short_name'])
+        row['full_fips'] = row['state_fips'] + row['fips']
         counties.append(row)
 
     pkl_path = os.path.abspath(os.path.join(PWD, 'us', 'counties.pkl'))

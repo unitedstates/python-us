@@ -98,6 +98,28 @@ class CountsTestCase(unittest.TestCase):
         # Lower 48 + DC + Alaska
         self.assertEqual(len(us.STATES_CONTINENTAL), 50)
 
+    def test_counties(self):
+        # 3221 counties
+        self.assertEqual(len(us.COUNTIES), 3221)
+
+
+class CountyFullFIPSTestCase(unittest.TestCase):
+
+    def test_hennepin_county(self):
+        self.assertEqual(us.counties.lookup('Hennepin')[0].full_fips, u'27053')
+
+
+class CountyLookupTestCase(unittest.TestCase):
+
+    def test_fips(self):
+        self.assertEqual(us.counties.lookup('27053').name, "Hennepin County")
+
+    def test_name(self):
+        self.assertEqual(len(us.counties.lookup('Washington')), 31)
+        self.assertEqual(len(us.counties.lookup('Washington County')), 30)
+        self.assertEqual(len(us.counties.lookup('Washington Parish')), 1)
+        self.assertEqual(us.states.lookup('Hennepin')[0].full_fips, u'27053')
+
 
 if __name__ == '__main__':
     unittest.main()
