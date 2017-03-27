@@ -21,6 +21,8 @@ class State(object):
         for k, v in kwargs.items():
             self.__dict__[k] = v
 
+        self.counties = [] # Counties linked later
+
     def __repr__(self):
         return "<State:%s>" % self.name
 
