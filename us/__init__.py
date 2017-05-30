@@ -6,4 +6,4 @@ from .states import (  # noqa
 from .unitedstatesofamerica import *  # noqa
 
 __appname__ = 'us'
-__version__ = '0.10.0'
+__version__ = '1.0.0'
