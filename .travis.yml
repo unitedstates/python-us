@@ -1,11 +1,12 @@
+sudo: False
 language: python
 python:
-  - 2.6
   - 2.7
-  - 3.2
   - 3.3
   - 3.4
   - 3.5
-install:
-  - pip install -r requirements.txt --use-mirrors
-script: nosetests
+  - 3.6
+before_install: pip install coverage codecov
+install: pip install -r requirements.txt
+script: nosetests --with-coverage
+after_success: codecov

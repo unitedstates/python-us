@@ -75,7 +75,7 @@ class ShapefileTestCase(unittest.TestCase):
         for state in us.STATES_AND_TERRITORIES:
 
             for region, url in state.shapefile_urls().items():
-                resp = requests.head(url)
+                resp = requests.head(url, allow_redirects=True)
                 self.assertEqual(resp.status_code, 200)
 
 
