@@ -2,6 +2,10 @@
     :alt: Build Status
     :target: http://travis-ci.org/unitedstates/python-us
 
+.. image:: https://codecov.io/gh/unitedstates/python-us/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/unitedstates/python-us
+  :alt: Codecov
+
 US: The Greatest Package in the World
 =====================================
 
