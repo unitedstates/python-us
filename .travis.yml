@@ -7,6 +7,6 @@ python:
   - 3.4
   - 3.5
 before_install: pip install coverage codecov
-install: pip install -r requirements.txt --use-mirrors
+install: pip install -r requirements.txt
 script: nosetests --with-coverage
 after_success: codecov
