@@ -32,7 +32,7 @@ class State(object):
         if not self.fips:
             return {}
 
-        base_url = "http://www2.census.gov/geo/tiger/TIGER2010"
+        base_url = "https://www2.census.gov/geo/tiger/TIGER2010"
         urls = {
             'tract': '{0}/TRACT/2010/tl_2010_{1}_tract10.zip'.format(
                 base_url, self.fips),
