@@ -191,6 +191,13 @@ modified to accommodate your change.
 Changelog
 ---------
 
+1.0.0
+~~~~~
+
+* full Python 3.6 support
+* use pytest
+
+
 0.10.0
 ~~~~~~
 
