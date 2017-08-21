@@ -1,5 +1,7 @@
 *.pyc
 MANIFEST
+.cache/
+.tox/
 __pycache__/
 dist/
 .DS_Store
