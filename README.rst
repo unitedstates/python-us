@@ -1,6 +1,5 @@
-.. image:: https://travis-ci.org/unitedstates/python-us.svg?branch=master
-    :alt: Build Status
-    :target: http://travis-ci.org/unitedstates/python-us
+.. image:: https://circleci.com/gh/unitedstates/python-us/tree/master.svg?style=shield
+    :target: https://circleci.com/gh/unitedstates/python-us/tree/master
 
 US: The Greatest Package in the World
 =====================================
