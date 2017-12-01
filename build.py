@@ -32,7 +32,7 @@ def parse_area_code(area_codes):
 
     full_area_code = {y:[int(x) for x in x.split(',')] for x,y in [z.split(':') for z in area_codes.split('/')]}
 
-    plain_area_code = [code for code_list in full_area_code.values() for code in code_list].sort()
+    plain_area_code = sorted([code for code_list in full_area_code.values() for code in code_list])
 
     return [full_area_code, plain_area_code]
 
@@ -59,7 +59,7 @@ def pickle_data():
         row['is_contiguous'] = row['is_contiguous'] == 1
         row['is_continental'] = row['is_continental'] == 1
         row['time_zones'] = row['time_zones'].split(',')
-        row['full_area_code'], row['plain_area_code'] = parse_area_code(row['area_code']) if row['area_code'].strip() else None, None
+        row['full_area_code'], row['plain_area_code'] = parse_area_code(row['area_code']) if row['area_code'].strip() else [None, None]
         states.append(row)
 
     pkl_path = os.path.abspath(os.path.join(PWD, 'us', 'states.pkl'))
