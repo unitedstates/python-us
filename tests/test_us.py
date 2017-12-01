@@ -97,3 +97,8 @@ def test_contiguous():
 def test_continental():
     # Lower 48 + DC + Alaska
     assert len(us.STATES_CONTINENTAL) == 50
+
+# area_codes
+def test_area_codes():
+    assert us.lookup('AL').plain_area_code == us.states.AL
+    assert us.lookup('AK').plain_area_code == us.states.AK
