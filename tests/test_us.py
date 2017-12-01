@@ -100,5 +100,5 @@ def test_continental():
 
 # area_codes
 def test_area_codes():
-    assert us.lookup('AL').plain_area_code == us.states.AL
-    assert us.lookup('AK').plain_area_code == us.states.AK
+    assert us.lookup('AL').plain_area_code == us.states.AL.plain_area_code
+    assert us.lookup('AK').plain_area_code == us.states.AK.plain_area_code
