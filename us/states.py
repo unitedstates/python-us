@@ -120,6 +120,10 @@ def lookup(val, field=None, use_cache=True):
             val = val.upper()
             field = 'abbr'
         else:
+            # Always match correctly spelled names, without checking metaphone
+            exact_name_match = lookup(val.title(), field='name')
+            if exact_name_match is not None:
+                return exact_name_match
             val = jellyfish.metaphone(val)
             field = 'name_metaphone'
 
