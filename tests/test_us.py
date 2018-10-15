@@ -64,6 +64,16 @@ def test_kentucky_uppercase():
     assert us.states.lookup('KENTUCKY') == us.states.KY
 
 
+def test_north_dakota_time_zones():
+    nd_time_zones = [
+        'America/Boise',
+        'America/Chicago',
+        'America/North_Dakota/Beulah',
+        'America/North_Dakota/Center',
+        'America/North_Dakota/New_Salem'
+    ]
+    assert us.states.ND.time_zones == nd_time_zones
+
 # shapefiles
 
 @pytest.mark.skip
