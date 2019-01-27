@@ -35,7 +35,9 @@ def pickle_data():
     pkl_path = os.path.abspath(os.path.join(PWD, 'us', 'states.pkl'))
 
     with open(pkl_path, 'wb') as pkl_file:
-        pickle.dump(states, pkl_file)
+        # Use `protocol=2` to ensure package compatibility with Python 2,
+        # even if the `.pkl` file is built under Python 3
+        pickle.dump(states, pkl_file, protocol=2)
 
 
 def build():
