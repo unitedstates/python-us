@@ -1,0 +1,11 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/python-us
+    docker:
+      - image: themattrix/tox
+    steps:
+      - checkout
+      - pip install -r requirements.txt
+      - run: tox
