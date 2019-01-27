@@ -90,6 +90,7 @@ The state lookup method allows matching by FIPS code, abbreviation, and name: ::
     <State:Maryland>
 
 Get useful information: ::
+
     >>> state = us.states.lookup('maryland')
     >>> state.abbr
     u'MD'
