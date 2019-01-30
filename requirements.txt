@@ -3,4 +3,4 @@ jellyfish==0.6.1
 # only required for tests
 pytest>=3.2,<3.3
 requests>=2.21,<2.22
-tox>=2.7,<2.8
+tox>=3.3,<3.4
