@@ -11,6 +11,7 @@ STATES_CONTINENTAL = []
 TERRITORIES = []
 OBSOLETE = []
 STATES_AND_TERRITORIES = []
+ALL = []
 
 _lookup_cache = {}
 
@@ -72,21 +73,23 @@ def load_states():
 
             state = State(**s)  # create state object
 
+            ALL.append(state)
+
             # create separate lists for obsolete, states, and territories
             if state.is_obsolete:
                 OBSOLETE.append(state)
-            elif state.is_territory:
-                TERRITORIES.append(state)
             else:
-                STATES.append(state)
+                if state.is_territory:
+                    TERRITORIES.append(state)
+                else:
+                    STATES.append(state)
+                    if state.is_contiguous:
+                        STATES_CONTIGUOUS.append(state)
+                    if state.is_continental:
+                        STATES_CONTINENTAL.append(state)
 
-                if state.is_contiguous:
-                    STATES_CONTIGUOUS.append(state)
-                if state.is_continental:
-                    STATES_CONTINENTAL.append(state)
-
-            # also create list of all states and territories
-            STATES_AND_TERRITORIES.append(state)
+                # also create list of all states and territories
+                STATES_AND_TERRITORIES.append(state)
 
             # provide package-level abbreviation access: us.states.MD
             globals()[state.abbr] = state
@@ -128,7 +131,7 @@ def lookup(val, field=None, use_cache=True):
     if use_cache and cache_key in _lookup_cache:
         return _lookup_cache[cache_key]
 
-    for state in STATES_AND_TERRITORIES:
+    for state in ALL:
         if val == getattr(state, field):
             _lookup_cache[cache_key] = state
             return state
@@ -136,7 +139,7 @@ def lookup(val, field=None, use_cache=True):
 
 def mapping(from_field, to_field, states=None):
     if states is None:
-        states = STATES_AND_TERRITORIES
+        states = ALL
     return dict((getattr(s, from_field), getattr(s, to_field)) for s in states)
 
 
