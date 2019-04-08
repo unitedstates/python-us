@@ -181,6 +181,23 @@ When you need to know state information RIGHT AWAY, there's the *states* script.
         block: http://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2010/tl_2010_24_tabblock10.zip
 
 
+Running Tests
+-------------
+
+CircleCI is set up to automatically run unit tests against any new commits to
+the repo. To run these tests yourself in a standardized, Dockerized
+environment, install
+`the CircleCI CLI <https://circleci.com/docs/2.0/local-cli/>`_, and then
+execute the tests with: ::
+
+    circleci local execute --job build
+
+Alternatively, you can run tests against only your current version of Python,
+using: ::
+
+    pytest tests
+
+
 Contributing
 ------------
 
@@ -193,6 +210,7 @@ script before submitting a pull request.
 Any changes other than additions to *data.db* should come with appropriate
 tests in *test.py*. Also check to see if the *states* CLI script should be
 modified to accommodate your change.
+
 
 Changelog
 ---------
