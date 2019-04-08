@@ -1,8 +1,13 @@
-*.pyc
-MANIFEST
+# Compilation and caching
 .cache/
+.pytest_cache/
 .tox/
 __pycache__/
+*.pyc
+
+# Distribution files
 dist/
-.DS_Store
 us.egg-info/
+
+# System files
+.DS_Store
