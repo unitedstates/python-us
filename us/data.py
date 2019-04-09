@@ -212,8 +212,8 @@ states = [
         capital_tz="America/Denver",
         ap_abbr="Idaho",
         time_zones=[
-            "America/Denver",
-            "America/Los_Angeles"
+            "America/Los_Angeles",
+            "America/Boise"
         ]
     ),
     State(
