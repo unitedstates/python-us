@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import pytest
+import pytz
 import us
 
 
@@ -8,6 +9,14 @@ import us
 def test_attribute():
     for state in us.STATES_AND_TERRITORIES:
         assert state == getattr(us.states, state.abbr)
+
+
+def test_valid_timezones():
+    for state in us.STATES_AND_TERRITORIES:
+        if state.capital:
+            assert pytz.timezone(state.capital_tz)
+        for tz in state.time_zones:
+            assert(pytz.timezone(tz))
 
 
 # maryland lookup

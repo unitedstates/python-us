@@ -2,6 +2,7 @@ jellyfish==0.6.1
 
 # only required for tests
 pytest>=3.10,<3.11
+pytz
 requests>=2.21,<2.22
 # make sure that this version is the same as is used in
 # the CircleCI Docker container
