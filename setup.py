@@ -13,8 +13,6 @@ setup(
     long_description=long_description,
     license='BSD',
     packages=find_packages(),
-    package_data={'us': ['*.pkl']},
-    include_package_data=True,
     install_requires=['jellyfish==0.6.1'],
     entry_points={
         'console_scripts': ['states = us.cli.states:main']},

@@ -185,15 +185,11 @@ Running Tests
 -------------
 
 CircleCI is set up to automatically run unit tests against any new commits to
-the repo. To run these tests yourself in a standardized, Dockerized
-environment, install
-`the CircleCI CLI <https://circleci.com/docs/2.0/local-cli/>`_, and then
-execute the tests with: ::
+the repo. To run tests locally for all supported Python versions, run: ::
 
-    circleci local execute --job build
+    tox
 
-Alternatively, you can run tests against only your current version of Python,
-using: ::
+Alternatively, you can run tests against only your current Python, using: ::
 
     pytest tests
 
@@ -203,13 +199,9 @@ Contributing
 
 Your contributions are welcomed!
 
-State data is stored in an SQLite database, *data.db*, and pickled using the
-*build.py* script. If you modify *data.db*, please be sure to run the build
-script before submitting a pull request.
-
-Any changes other than additions to *data.db* should come with appropriate
-tests in *test.py*. Also check to see if the *states* CLI script should be
-modified to accommodate your change.
+Any changes other than modifications to the state metadata housed in *data.py*
+should come with appropriate tests in *test.py*. Also check to see if the
+*states* CLI script should be modified to accommodate your change.
 
 
 Changelog

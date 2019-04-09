@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
-import pickle
 import re
+from .data import states
+
 
 FIPS_RE = re.compile(r'^\d{2}$')
 ABBR_RE = re.compile(r'^[a-zA-Z]{2}$')
@@ -15,81 +16,32 @@ STATES_AND_TERRITORIES = []
 _lookup_cache = {}
 
 
-class State(object):
-
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            self.__dict__[k] = v
-
-    def __repr__(self):
-        return "<State:%s>" % self.name
-
-    def __str__(self):
-        return self.name
-
-    def shapefile_urls(self, region=None):
-
-        if not self.fips:
-            return {}
-
-        base_url = "https://www2.census.gov/geo/tiger/TIGER2010"
-        urls = {
-            'tract': '{0}/TRACT/2010/tl_2010_{1}_tract10.zip'.format(
-                base_url, self.fips),
-            'cd': '{0}/CD/111/tl_2010_{1}_cd111.zip'.format(
-                base_url, self.fips),
-            'county': '{0}/COUNTY/2010/tl_2010_{1}_county10.zip'.format(
-                base_url, self.fips),
-            'state': '{0}/STATE/2010/tl_2010_{1}_state10.zip'.format(
-                base_url, self.fips),
-            'zcta': '{0}/ZCTA5/2010/tl_2010_{1}_zcta510.zip'.format(
-                base_url, self.fips),
-            'block': '{0}/TABBLOCK/2010/tl_2010_{1}_tabblock10.zip'.format(
-                base_url, self.fips),
-            'blockgroup': '{0}/BG/2010/tl_2010_{1}_bg10.zip'.format(
-                base_url, self.fips),
-        }
-
-        if region and region in urls:
-            return urls[region]
-
-        return urls
-
-
 def load_states():
-    """ Load state data from pickle file distributed with this package.
+    """ Load state data from the neighboring data.py file.
 
         Creates lists of states, territories, and combined states and
         territories. Also adds state abbreviation attribute access
         to the package: us.states.MD
     """
 
-    from pkg_resources import resource_stream
+    for state in states:
+        if state.is_obsolete:
+            OBSOLETE.append(state)
+        elif state.is_territory:
+            TERRITORIES.append(state)
+        else:
+            STATES.append(state)
 
-    # load state data from pickle file
-    with resource_stream(__name__, 'states.pkl') as pklfile:
-        for s in pickle.load(pklfile):
+            if state.is_contiguous:
+                STATES_CONTIGUOUS.append(state)
+            if state.is_continental:
+                STATES_CONTINENTAL.append(state)
 
-            state = State(**s)  # create state object
+        # also create list of all states and territories
+        STATES_AND_TERRITORIES.append(state)
 
-            # create separate lists for obsolete, states, and territories
-            if state.is_obsolete:
-                OBSOLETE.append(state)
-            elif state.is_territory:
-                TERRITORIES.append(state)
-            else:
-                STATES.append(state)
-
-                if state.is_contiguous:
-                    STATES_CONTIGUOUS.append(state)
-                if state.is_continental:
-                    STATES_CONTINENTAL.append(state)
-
-            # also create list of all states and territories
-            STATES_AND_TERRITORIES.append(state)
-
-            # provide package-level abbreviation access: us.states.MD
-            globals()[state.abbr] = state
+        # provide package-level abbreviation access: us.states.MD
+        globals()[state.abbr] = state
 
 
 def lookup(val, field=None, use_cache=True):
