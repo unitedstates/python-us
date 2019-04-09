@@ -2,9 +2,26 @@ import jellyfish
 
 
 class State(object):
-    def __init__(self, **kwargs):
-        for k, v in kwargs.items():
-            self.__dict__[k] = v
+    def __init__(
+        self,
+        fips, name, abbr,
+        is_territory, is_obsolete, is_contiguous, is_continental,
+        statehood_year, capital, capital_tz, ap_abbr, time_zones
+    ):
+        # List expected properties out verbosely, to ensure that
+        # this list is consistent with every object in data.py
+        self.fips = fips
+        self.name = name
+        self.abbr = abbr
+        self.is_territory = is_territory
+        self.is_obsolete = is_obsolete
+        self.is_contiguous = is_contiguous
+        self.is_continental = is_continental
+        self.statehood_year = statehood_year
+        self.capital = capital
+        self.capital_tz = capital_tz
+        self.ap_abbr = ap_abbr
+        self.time_zones = time_zones
 
         self.name_metaphone = jellyfish.metaphone(self.name)
 
