@@ -16,7 +16,10 @@ def test_valid_timezones():
         if state.capital:
             assert pytz.timezone(state.capital_tz)
         for tz in state.time_zones:
-            assert(pytz.timezone(tz))
+            assert pytz.timezone(tz)
+        # During migration from SQLite to Python classes, a duplicate
+        # time zone had been found
+        assert len(state.time_zones) == len(set(state.time_zones))
 
 
 # maryland lookup
