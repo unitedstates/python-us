@@ -581,6 +581,8 @@ states = [
         capital_tz="America/North_Dakota/Center",
         ap_abbr="N.D.",
         time_zones=[
+            "America/Chicago",
+            "America/Boise",
             "America/North_Dakota/Beulah",
             "America/North_Dakota/Center",
             "America/North_Dakota/New_Salem"
