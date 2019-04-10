@@ -6,4 +6,7 @@ from .states import (  # noqa
 from .unitedstatesofamerica import *  # noqa
 
 __appname__ = 'us'
-__version__ = '1.0.0'
+# Follow option 5 in this version-number-sourcing documentation
+# https://packaging.python.org/guides/single-sourcing-package-version/
+import pkg_resources
+__version__ = pkg_resources.get_distribution(__appname__).version
