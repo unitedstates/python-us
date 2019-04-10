@@ -17,7 +17,6 @@ setup(
     entry_points={
         'console_scripts': ['states = us.cli.states:main']},
     platforms=['any'],
-    zip_safe=False,
     classifiers=[
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
