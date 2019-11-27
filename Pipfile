@@ -4,10 +4,11 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pytest = "*"
-requests = "<3.0"
-tox = "*"
 black = "==19.10b0"
+pytest = "*"
+pytz = "*"
+requests = "<3.0"
+flake8 = "*"
 
 [packages]
 jellyfish = "==0.7.2"
