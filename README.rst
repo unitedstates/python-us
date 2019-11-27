@@ -215,6 +215,14 @@ modified to accommodate your change.
 Changelog
 ---------
 
+2.0.0
+~~~~~
+
+* add support for Python 3.8
+* remove pickled objects and database in favor of pure Python code
+* upgrade jellyfish to 0.7.2 to fix metaphone bug
+
+
 1.0.0
 ~~~~~
 
