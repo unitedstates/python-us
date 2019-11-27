@@ -10,4 +10,4 @@ tox = "*"
 black = "==19.10b0"
 
 [packages]
-jellyfish = "*"
+jellyfish = "==0.7.2"
