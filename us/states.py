@@ -834,7 +834,8 @@ ND = State(
         "capital_tz": "America/North_Dakota/Center",
         "ap_abbr": "N.D.",
         "time_zones": [
-            "America/North_Dakota/Center",
+            "America/Boise",
+            "America/Chicago",
             "America/North_Dakota/Beulah",
             "America/North_Dakota/Center",
             "America/North_Dakota/New_Salem",
