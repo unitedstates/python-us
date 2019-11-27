@@ -21,7 +21,7 @@ jobs:
       uses: dschep/install-pipenv-action@v1
     - name: Install dependencies
       run: |
-        pipenv install --dev
+        pipenv install --dev --python `which python3`
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -30,4 +30,4 @@ jobs:
         pipenv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pipenv run pytest
