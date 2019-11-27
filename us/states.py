@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+import itertools
 import re
 
 import jellyfish
@@ -89,7 +90,7 @@ def lookup(val, field=None, use_cache=True):
     if use_cache and cache_key in _lookup_cache:
         return _lookup_cache[cache_key]
 
-    for state in STATES_AND_TERRITORIES:
+    for state in itertools.chain(STATES_AND_TERRITORIES, OBSOLETE):
         if val == getattr(state, field):
             _lookup_cache[cache_key] = state
             return state
@@ -97,7 +98,7 @@ def lookup(val, field=None, use_cache=True):
 
 def mapping(from_field, to_field, states=None):
     if states is None:
-        states = STATES_AND_TERRITORIES
+        states = itertools.chain(STATES_AND_TERRITORIES, OBSOLETE)
     return dict((getattr(s, from_field), getattr(s, to_field)) for s in states)
 
 

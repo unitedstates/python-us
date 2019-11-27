@@ -57,6 +57,11 @@ def test_name_lookup():
         assert us.states.lookup(state.name) == state
 
 
+def test_obsolete_lookup():
+    for state in us.OBSOLETE:
+        assert us.states.lookup(state.name) == state
+
+
 # test metaphone
 
 
@@ -73,6 +78,12 @@ def test_mapping():
     assert us.states.mapping("abbr", "fips", states=states) == dict(
         (s.abbr, s.fips) for s in states
     )
+
+
+def test_obsolete_mapping():
+    mapping = us.states.mapping("abbr", "fips")
+    for state in us.states.OBSOLETE:
+        assert state.abbr in mapping
 
 
 # known bugs
