@@ -169,9 +169,9 @@ AZ = State(
         "is_continental": True,
         "statehood_year": 1912,
         "capital": "Phoenix",
-        "capital_tz": "America/Denver",
+        "capital_tz": "America/Phoenix",
         "ap_abbr": "Ariz.",
-        "time_zones": ["America/Denver"],
+        "time_zones": ["America/Phoenix"],
         "name_metaphone": "ARSN",
     }
 )
