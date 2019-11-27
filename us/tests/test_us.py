@@ -132,7 +132,7 @@ def test_obsolete():
 
 
 def test_states():
-    assert len(us.STATES) == 51
+    assert len(us.STATES) == 50
 
 
 def test_territories():
@@ -141,9 +141,9 @@ def test_territories():
 
 def test_contiguous():
     # Lower 48 + DC
-    assert len(us.STATES_CONTIGUOUS) == 49
+    assert len(us.STATES_CONTIGUOUS) == 48
 
 
 def test_continental():
     # Lower 48 + DC + Alaska
-    assert len(us.STATES_CONTINENTAL) == 50
+    assert len(us.STATES_CONTINENTAL) == 49
