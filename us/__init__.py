@@ -7,6 +7,3 @@ from .states import (  # noqa
     OBSOLETE,
 )
 from .unitedstatesofamerica import *  # noqa
-
-__appname__ = "us"
-__version__ = "2.0.0"
