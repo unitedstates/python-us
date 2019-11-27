@@ -1,9 +1,14 @@
 from __future__ import unicode_literals
+from itertools import chain
+
+import jellyfish
 import pytest
+
 import us
 
 
 # attribute
+
 
 def test_attribute():
     for state in us.STATES_AND_TERRITORIES:
@@ -12,28 +17,30 @@ def test_attribute():
 
 # maryland lookup
 
+
 def test_fips():
-    assert us.states.lookup('24') == us.states.MD
-    assert us.states.lookup('51') != us.states.MD
+    assert us.states.lookup("24") == us.states.MD
+    assert us.states.lookup("51") != us.states.MD
 
 
 def test_abbr():
-    assert us.states.lookup('MD') == us.states.MD
-    assert us.states.lookup('md') == us.states.MD
-    assert us.states.lookup('VA') != us.states.MD
-    assert us.states.lookup('va') != us.states.MD
+    assert us.states.lookup("MD") == us.states.MD
+    assert us.states.lookup("md") == us.states.MD
+    assert us.states.lookup("VA") != us.states.MD
+    assert us.states.lookup("va") != us.states.MD
 
 
 def test_name():
-    assert us.states.lookup('Maryland') == us.states.MD
-    assert us.states.lookup('maryland') == us.states.MD
-    assert us.states.lookup('Maryland', field='name') == us.states.MD
-    assert us.states.lookup('maryland', field='name') is None
-    assert us.states.lookup('murryland') == us.states.MD
-    assert us.states.lookup('Virginia') != us.states.MD
+    assert us.states.lookup("Maryland") == us.states.MD
+    assert us.states.lookup("maryland") == us.states.MD
+    assert us.states.lookup("Maryland", field="name") == us.states.MD
+    assert us.states.lookup("maryland", field="name") is None
+    assert us.states.lookup("murryland") == us.states.MD
+    assert us.states.lookup("Virginia") != us.states.MD
 
 
 # lookups
+
 
 def test_abbr_lookup():
     for state in us.STATES:
@@ -50,26 +57,44 @@ def test_name_lookup():
         assert us.states.lookup(state.name) == state
 
 
+# test metaphone
+
+
+def test_jellyfish_metaphone():
+    for state in chain(us.STATES_AND_TERRITORIES, us.OBSOLETE):
+        assert state.name_metaphone == jellyfish.metaphone(state.name)
+
+
 # mappings
+
 
 def test_mapping():
     states = us.STATES[:5]
-    assert us.states.mapping('abbr', 'fips', states=states) == \
-        dict((s.abbr, s.fips) for s in states)
+    assert us.states.mapping("abbr", "fips", states=states) == dict(
+        (s.abbr, s.fips) for s in states
+    )
 
 
 # known bugs
 
+
 def test_kentucky_uppercase():
-    assert us.states.lookup('kentucky') == us.states.KY
-    assert us.states.lookup('KENTUCKY') == us.states.KY
+    assert us.states.lookup("kentucky") == us.states.KY
+    assert us.states.lookup("KENTUCKY") == us.states.KY
+
+
+def test_wayoming():
+    assert us.states.lookup("Wyoming") == us.states.WY
+    assert us.states.lookup("Wayoming") is None
 
 
 # shapefiles
 
+
 @pytest.mark.skip
 def test_head():
     import requests
+
     for state in us.STATES_AND_TERRITORIES:
         for region, url in state.shapefile_urls().items():
             resp = requests.head(url)
@@ -77,6 +102,7 @@ def test_head():
 
 
 # counts
+
 
 def test_obsolete():
     assert len(us.OBSOLETE) == 3

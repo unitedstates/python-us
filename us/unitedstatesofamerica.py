@@ -1,4 +1,4 @@
-name = 'United States of America'
-abbr = 'US'
+name = "United States of America"
+abbr = "US"
 
-__all__ = ['name', 'abbr']
+__all__ = ["name", "abbr"]
