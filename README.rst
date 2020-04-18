@@ -18,8 +18,6 @@ A package for easily working with US and state metadata.
 * URLs to shapefiles for state, census, congressional districts,
   counties, and census tracts
 
-Congratulations, DC. As far as this package is concerned, you've got statehood.
-
 
 Installation
 ------------
