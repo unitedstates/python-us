@@ -1,4 +1,5 @@
-[![](https://github.com/unitedstates/python-us/workflows/Tests/badge.svg)](https://github.com/unitedstates/python-us/actions)
+.. image:: https://github.com/unitedstates/python-us/workflows/Tests/badge.svg
+   :target: https://github.com/unitedstates/python-us/actions
 
 US: The Greatest Package in the World
 =====================================
