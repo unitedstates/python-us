@@ -439,6 +439,7 @@ IN = State(
         "capital_tz": "America/Indiana/Indianapolis",
         "ap_abbr": "Ind.",
         "time_zones": [
+            "America/Chicago",
             "America/Indiana/Indianapolis",
             "America/Indianapolis",
             "America/Indiana/Winamac",
@@ -449,6 +450,7 @@ IN = State(
             "America/Indiana/Marengo",
             "America/Indiana/Knox",
             "America/Knox_IN",
+            "America/New_York",
         ],
         "name_metaphone": "INTN",
     }
@@ -507,10 +509,10 @@ KY = State(
         "capital_tz": "America/New_York",
         "ap_abbr": "Ky.",
         "time_zones": [
+            "America/Chicago",
             "America/New_York",
             "America/Kentucky/Louisville",
             "America/Kentucky/Monticello",
-            "America/Louisville",
         ],
         "name_metaphone": "KNTK",
     }
@@ -775,9 +777,9 @@ NM = State(
         "is_continental": True,
         "statehood_year": 1912,
         "capital": "Santa Fe",
-        "capital_tz": "America/Chicago",
+        "capital_tz": "America/Denver",
         "ap_abbr": "N.M.",
-        "time_zones": ["America/Chicago"],
+        "time_zones": ["America/Denver"],
         "name_metaphone": "N MKSK",
     }
 )
