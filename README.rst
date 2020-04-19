@@ -1,5 +1,5 @@
-.. image:: https://circleci.com/gh/unitedstates/python-us/tree/master.svg?style=shield
-    :target: https://circleci.com/gh/unitedstates/python-us/tree/master
+.. image:: https://github.com/unitedstates/python-us/workflows/Tests/badge.svg
+   :target: https://github.com/unitedstates/python-us/actions
 
 US: The Greatest Package in the World
 =====================================
@@ -17,8 +17,6 @@ A package for easily working with US and state metadata.
 * is contiguous or continental
 * URLs to shapefiles for state, census, congressional districts,
   counties, and census tracts
-
-Congratulations, DC. As far as this package is concerned, you've got statehood.
 
 
 Installation
@@ -214,6 +212,19 @@ modified to accommodate your change.
 
 Changelog
 ---------
+
+2.0.0
+~~~~~
+
+* add support for Python 3.7 and 3.8
+* remove support for Python 3.4 and 3.5
+* remove pickled objects and database in favor of pure Python code
+* upgrade jellyfish to 0.7.2 to fix metaphone bug
+* fixes for IN, KY, ND, and NM timezones
+* set AZ timezone to America/Phoenix
+* obsolete entries are no longer included in STATES_AND_TERRITORIES
+* DC is no longer included in STATES, STATES_AND_TERRITORIES, STATES_CONTIGUOUS, or STATES_CONTINENTAL
+
 
 1.0.0
 ~~~~~
