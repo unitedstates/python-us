@@ -196,20 +196,6 @@ using: ::
     pytest tests
 
 
-Contributing
-------------
-
-Your contributions are welcomed!
-
-State data is stored in an SQLite database, *data.db*, and pickled using the
-*build.py* script. If you modify *data.db*, please be sure to run the build
-script before submitting a pull request.
-
-Any changes other than additions to *data.db* should come with appropriate
-tests in *test.py*. Also check to see if the *states* CLI script should be
-modified to accommodate your change.
-
-
 Changelog
 ---------
 
