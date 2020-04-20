@@ -4,7 +4,7 @@ long_description = open("README.rst").read()
 
 setup(
     name="us",
-    version="2.0.0",
+    version="2.0.1",
     author="Jeremy Carbaugh",
     author_email="jeremy@jcarbaugh.com",
     url="https://github.com/unitedstates/python-us",
@@ -13,7 +13,7 @@ setup(
     license="BSD",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["jellyfish==0.7.2"],
+    install_requires=["jellyfish==0.6.1"],
     entry_points={"console_scripts": ["states = us.cli.states:main"]},
     platforms=["any"],
     classifiers=[
