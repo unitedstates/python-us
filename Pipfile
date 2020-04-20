@@ -4,13 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pytest = "<3.3"
+black = "==19.10b0"
+flake8 = "*"
+pytest = "*"
 pytz = "*"
 requests = "<3.0"
-flake8 = "*"
 
 [packages]
-jellyfish = "==0.6.1"
+jellyfish = "==0.7.2"
 
 
 [pipenv]

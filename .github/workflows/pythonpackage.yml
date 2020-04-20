@@ -9,7 +9,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [2.7, 3.6, 3.7, 3.8]
+        python-version: [3.6, 3.7, 3.8]
 
     steps:
     - uses: actions/checkout@v1
@@ -22,14 +22,14 @@ jobs:
     - name: Install dependencies
       run: |
         pipenv install --dev --python `which python`
-    # - name: Linting and formatting
-    #   run: |
-    #     # stop the build if there are Python syntax errors or undefined names
-    #     pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-    #     # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-    #     pipenv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    #     # check formatting
-    #     # pipenv run black --check us
+    - name: Linting and formatting
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        pipenv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        # check formatting
+        pipenv run black --check us
     - name: Test with pytest
       run: |
         pipenv run pytest

@@ -199,11 +199,19 @@ using: ::
 Changelog
 ---------
 
+3.0.0
+~~~~~
+
+* upgrade to jellyfish 0.7.2
+* drop support for Python 2.7
+
+
 2.0.1
 ~~~~~
 
 * fix Python 2.7 tests that ran with Python 3
 * revert to jellyfish 0.6.1 to support Python 2.7
+
 
 2.0.0
 ~~~~~
