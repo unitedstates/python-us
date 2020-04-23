@@ -1,10 +1,13 @@
 import itertools
+import os
 import re
 
 import jellyfish
 
 FIPS_RE = re.compile(r"^\d{2}$")
 ABBR_RE = re.compile(r"^[a-zA-Z]{2}$")
+
+DC_STATEHOOD = bool(os.environ.get("DC_STATEHOOD"))
 
 
 _lookup_cache = {}
@@ -1401,4 +1404,13 @@ STATES_CONTINENTAL = [
     WI,
     WY,
 ]
+
 STATES_AND_TERRITORIES = STATES + TERRITORIES
+
+COMMONWEALTHS = [KY, MA, PA, VA]
+
+if DC_STATEHOOD:
+    STATES.append(DC)
+    STATES_AND_TERRITORIES.append(DC)
+    STATES_CONTIGUOUS.append(DC)
+    STATES_CONTINENTAL.append(DC)
