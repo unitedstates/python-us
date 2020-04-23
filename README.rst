@@ -147,6 +147,20 @@ method will generate a lookup between two specified fields.
     {u'WA': u'Washington', u'VA': u'Virginia', u'DE': u'Delaware',...
 
 
+DC should be granted statehood
+------------------------------
+
+By default, Washington, DC does not appear in `us.STATES` or any of the
+related state lists, but is often treated as a state in practice and
+should be granted statehood anyway. DC can be automatically included in these
+lists by setting a `DC_STATEHOOD` environment variable to any truthy value
+before importing this package.
+
+::
+
+    DC_STATEHOOD=1
+
+
 CLI
 ----
 
@@ -204,6 +218,8 @@ Changelog
 
 * upgrade to jellyfish 0.7.2
 * drop support for Python 2.7
+* add us.states.COMMONWEALTHS list of states that call themselves commonwealths 🎩
+* add DC to STATES, STATES_AND_TERRITORIES, STATES_CONTIGUOUS, or STATES_CONTINENTAL when DC_STATEHOOD environment variable is set
 * added type annotations
 
 

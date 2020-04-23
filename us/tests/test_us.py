@@ -140,12 +140,12 @@ def test_territories():
 
 
 def test_contiguous():
-    # Lower 48 + DC
+    # Lower 48
     assert len(us.STATES_CONTIGUOUS) == 48
 
 
 def test_continental():
-    # Lower 48 + DC + Alaska
+    # Lower 48 + Alaska
     assert len(us.STATES_CONTINENTAL) == 49
 
 
