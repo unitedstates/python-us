@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 from itertools import chain
 
-import jellyfish
-import pytest
+import jellyfish  # type: ignore
+import pytest  # type: ignore
 import pytz
 
 import us

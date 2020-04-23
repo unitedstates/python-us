@@ -204,6 +204,7 @@ Changelog
 
 * upgrade to jellyfish 0.7.2
 * drop support for Python 2.7
+* added type annotations
 
 
 2.0.1

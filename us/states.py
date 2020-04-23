@@ -1,8 +1,9 @@
 import itertools
 import os
 import re
+from typing import Any, Dict, Iterable, List, Optional, Union
 
-import jellyfish
+import jellyfish  # type: ignore
 
 FIPS_RE = re.compile(r"^\d{2}$")
 ABBR_RE = re.compile(r"^[a-zA-Z]{2}$")
@@ -10,24 +11,43 @@ ABBR_RE = re.compile(r"^[a-zA-Z]{2}$")
 DC_STATEHOOD = bool(os.environ.get("DC_STATEHOOD"))
 
 
-_lookup_cache = {}
+_lookup_cache: Dict[str, "State"] = {}
 
 
-class State(object):
+class State:
+
+    abbr: str
+    ap_abbr: Optional[str]
+    capital: Optional[str]
+    capital_tz: Optional[str]
+    fips: Optional[str]
+    is_territory: bool
+    is_obsolete: bool
+    is_contiguous: bool
+    is_continental: bool
+    name: str
+    name_metaphone: str
+    statehood_year: Optional[int]
+    time_zones: List[str]
+
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
-            self.__dict__[k] = v
+            setattr(self, k, v)
 
-    def __repr__(self):
-        return "<State:%s>" % self.name
+    def __repr__(self) -> str:
+        return f"<State:{self.name}>"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
-    def shapefile_urls(self, region=None):
+    def shapefile_urls(
+        self, region: Optional[str] = None
+    ) -> Union[str, Dict[str, str], None]:
 
-        if not self.fips:
-            return {}
+        fips = self.fips
+
+        if not fips:
+            return None
 
         base_url = "https://www2.census.gov/geo/tiger/TIGER2010"
         urls = {
@@ -58,7 +78,7 @@ class State(object):
         return urls
 
 
-def lookup(val, field=None, use_cache=True):
+def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional[State]:
     """ Semi-fuzzy state lookup. This method will make a best effort
         attempt at finding the state based on the lookup value provided.
 
@@ -77,6 +97,8 @@ def lookup(val, field=None, use_cache=True):
         with the `use_cache=False` argument.
     """
 
+    matched_state = None
+
     if field is None:
         if FIPS_RE.match(val):
             field = "fips"
@@ -90,18 +112,21 @@ def lookup(val, field=None, use_cache=True):
     # see if result is in cache
     cache_key = "%s:%s" % (field, val)
     if use_cache and cache_key in _lookup_cache:
-        return _lookup_cache[cache_key]
+        matched_state = _lookup_cache[cache_key]
 
     for state in itertools.chain(STATES_AND_TERRITORIES, OBSOLETE):
         if val == getattr(state, field):
-            _lookup_cache[cache_key] = state
-            return state
+            _lookup_cache[cache_key] = matched_state = state
+
+    return matched_state
 
 
-def mapping(from_field, to_field, states=None):
+def mapping(
+    from_field: str, to_field: str, states: Optional[Iterable[State]] = None
+) -> Dict[Any, Any]:
     if states is None:
         states = itertools.chain(STATES_AND_TERRITORIES, OBSOLETE)
-    return dict((getattr(s, from_field), getattr(s, to_field)) for s in states)
+    return {getattr(s, from_field): getattr(s, to_field) for s in states}
 
 
 AL = State(
@@ -1249,9 +1274,9 @@ WY = State(
 )
 
 
-OBSOLETE = [DK, OL, PI]
-TERRITORIES = [AS, GU, MP, PR, VI]
-STATES = [
+OBSOLETE: List[State] = [DK, OL, PI]
+TERRITORIES: List[State] = [AS, GU, MP, PR, VI]
+STATES: List[State] = [
     AL,
     AK,
     AZ,
@@ -1303,7 +1328,7 @@ STATES = [
     WI,
     WY,
 ]
-STATES_CONTIGUOUS = [
+STATES_CONTIGUOUS: List[State] = [
     AL,
     AZ,
     AR,
@@ -1353,7 +1378,7 @@ STATES_CONTIGUOUS = [
     WI,
     WY,
 ]
-STATES_CONTINENTAL = [
+STATES_CONTINENTAL: List[State] = [
     AL,
     AK,
     AZ,
@@ -1405,9 +1430,9 @@ STATES_CONTINENTAL = [
     WY,
 ]
 
-STATES_AND_TERRITORIES = STATES + TERRITORIES
+STATES_AND_TERRITORIES: List[State] = STATES + TERRITORIES
 
-COMMONWEALTHS = [KY, MA, PA, VA]
+COMMONWEALTHS: List[State] = [KY, MA, PA, VA]
 
 if DC_STATEHOOD:
     STATES.append(DC)
