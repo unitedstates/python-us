@@ -41,28 +41,26 @@ class State:
     def __str__(self) -> str:
         return self.name
 
-    def shapefile_urls(
-        self, region: Optional[str] = None
-    ) -> Union[str, Dict[str, str], None]:
+    def shapefile_urls(self) -> Optional[Dict[str, str]]:
+        """ Shapefiles are available directly from the US Census Bureau:
+            https://www.census.gov/cgi-bin/geo/shapefiles/index.php
+        """
 
         fips = self.fips
 
         if not fips:
             return None
 
-        base = "https://www2.census.gov/geo/tiger/TIGER2010"
+        base = f"https://www2.census.gov/geo/tiger/TIGER2010/"
         urls = {
             "tract": urljoin(base, f"TRACT/2010/tl_2010_{fips}_tract10.zip"),
-            "cd": urljoin(base, f"CD/111/tl_2010_{1}_cd111.zip"),
+            "cd": urljoin(base, f"CD/111/tl_2010_{fips}_cd111.zip"),
             "county": urljoin(base, f"COUNTY/2010/tl_2010_{fips}_county10.zip"),
             "state": urljoin(base, f"STATE/2010/tl_2010_{fips}_state10.zip"),
             "zcta": urljoin(base, f"ZCTA5/2010/tl_2010_{fips}_zcta510.zip"),
             "block": urljoin(base, f"TABBLOCK/2010/tl_2010_{fips}_tabblock10.zip"),
             "blockgroup": urljoin(base, f"BG/2010/tl_2010_{fips}_bg10.zip"),
         }
-
-        if region and region in urls:
-            return urls[region]
 
         return urls
 
