@@ -1,4 +1,3 @@
-from __future__ import unicode_literals
 from itertools import chain
 
 import jellyfish  # type: ignore
@@ -95,7 +94,14 @@ def test_mapping():
 def test_obsolete_mapping():
     mapping = us.states.mapping("abbr", "fips")
     for state in us.states.OBSOLETE:
-        assert state.abbr in mapping
+        assert state.abbr not in mapping
+
+
+def test_custom_mapping():
+    mapping = us.states.mapping("abbr", "fips", states=[us.states.DC, us.states.MD])
+    assert len(mapping) == 2
+    assert "DC" in mapping
+    assert "MD" in mapping
 
 
 # known bugs
@@ -119,7 +125,7 @@ def test_head():
     import requests
 
     for state in us.STATES_AND_TERRITORIES:
-        for region, url in state.shapefile_urls().items():
+        for url in state.shapefile_urls().values():
             resp = requests.head(url)
             assert resp.status_code == 200
 

@@ -144,11 +144,18 @@ method will generate a lookup between two specified fields.
     >>> us.states.mapping('abbr', 'name')
     {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', ...
 
+This method uses `us.STATES_AND_TERRITORIES` as the default list of states
+it will create a mapping for, but this can be overridden by passing an
+additional states argument: ::
+
+    >>> us.states.mapping('fips', 'abbr', states=[us.states.DC])
+    {'11': 'DC'}
+
 
 DC should be granted statehood
 ------------------------------
 
-By default, Washington, DC does not appear in `us.STATES` or any of the
+Washington, DC does not appear in `us.STATES` or any of the
 related state lists, but is often treated as a state in practice and
 should be granted statehood anyway. DC can be automatically included in these
 lists by setting a `DC_STATEHOOD` environment variable to any truthy value
@@ -214,6 +221,7 @@ Changelog
 * add us.states.COMMONWEALTHS list of states that call themselves commonwealths 🎩
 * add DC to STATES, STATES_AND_TERRITORIES, STATES_CONTIGUOUS, or STATES_CONTINENTAL when DC_STATEHOOD environment variable is set
 * remove `region` parameter from `shapefile_urls()` method
+* `mapping()` no longer includes obsolete states
 * added type annotations
 
 

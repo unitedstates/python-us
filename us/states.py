@@ -97,13 +97,15 @@ def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional
             field = "name_metaphone"
 
     # see if result is in cache
-    cache_key = "%s:%s" % (field, val)
+    cache_key = f"{field}:{val}"
     if use_cache and cache_key in _lookup_cache:
         matched_state = _lookup_cache[cache_key]
 
     for state in itertools.chain(STATES_AND_TERRITORIES, OBSOLETE):
         if val == getattr(state, field):
-            _lookup_cache[cache_key] = matched_state = state
+            matched_state = state
+            if use_cache:
+                _lookup_cache[cache_key] = state
 
     return matched_state
 
@@ -112,7 +114,7 @@ def mapping(
     from_field: str, to_field: str, states: Optional[Iterable[State]] = None
 ) -> Dict[Any, Any]:
     if states is None:
-        states = itertools.chain(STATES_AND_TERRITORIES, OBSOLETE)
+        states = STATES_AND_TERRITORIES
     return {getattr(s, from_field): getattr(s, to_field) for s in states}
 
 
