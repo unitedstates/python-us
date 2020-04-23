@@ -196,18 +196,11 @@ When you need to know state information RIGHT AWAY, there's the *states* script.
 Running Tests
 -------------
 
-CircleCI is set up to automatically run unit tests against any new commits to
-the repo. To run these tests yourself in a standardized, Dockerized
-environment, install
-`the CircleCI CLI <https://circleci.com/docs/2.0/local-cli/>`_, and then
-execute the tests with: ::
+GitHub Actions are set up to automatically run unit tests against any new
+commits to the repo. To run these tests yourself: ::
 
-    circleci local execute --job build
-
-Alternatively, you can run tests against only your current version of Python,
-using: ::
-
-    pytest tests
+    pipenv install --dev
+    pipenv run pytest
 
 
 Changelog
