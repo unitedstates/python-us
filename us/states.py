@@ -2,6 +2,7 @@ import itertools
 import os
 import re
 from typing import Any, Dict, Iterable, List, Optional, Union
+from urllib.parse import urljoin
 
 import jellyfish  # type: ignore
 
@@ -49,27 +50,15 @@ class State:
         if not fips:
             return None
 
-        base_url = "https://www2.census.gov/geo/tiger/TIGER2010"
+        base = "https://www2.census.gov/geo/tiger/TIGER2010"
         urls = {
-            "tract": "{0}/TRACT/2010/tl_2010_{1}_tract10.zip".format(
-                base_url, self.fips
-            ),
-            "cd": "{0}/CD/111/tl_2010_{1}_cd111.zip".format(base_url, self.fips),
-            "county": "{0}/COUNTY/2010/tl_2010_{1}_county10.zip".format(
-                base_url, self.fips
-            ),
-            "state": "{0}/STATE/2010/tl_2010_{1}_state10.zip".format(
-                base_url, self.fips
-            ),
-            "zcta": "{0}/ZCTA5/2010/tl_2010_{1}_zcta510.zip".format(
-                base_url, self.fips
-            ),
-            "block": "{0}/TABBLOCK/2010/tl_2010_{1}_tabblock10.zip".format(
-                base_url, self.fips
-            ),
-            "blockgroup": "{0}/BG/2010/tl_2010_{1}_bg10.zip".format(
-                base_url, self.fips
-            ),
+            "tract": urljoin(base, f"TRACT/2010/tl_2010_{fips}_tract10.zip"),
+            "cd": urljoin(base, f"CD/111/tl_2010_{1}_cd111.zip"),
+            "county": urljoin(base, f"COUNTY/2010/tl_2010_{fips}_county10.zip"),
+            "state": urljoin(base, f"STATE/2010/tl_2010_{fips}_state10.zip"),
+            "zcta": urljoin(base, f"ZCTA5/2010/tl_2010_{fips}_zcta510.zip"),
+            "block": urljoin(base, f"TABBLOCK/2010/tl_2010_{fips}_tabblock10.zip"),
+            "blockgroup": urljoin(base, f"BG/2010/tl_2010_{fips}_bg10.zip"),
         }
 
         if region and region in urls:
