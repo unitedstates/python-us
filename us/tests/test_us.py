@@ -70,7 +70,7 @@ def test_name_lookup():
 
 def test_obsolete_lookup():
     for state in us.OBSOLETE:
-        assert us.states.lookup(state.name) == state
+        assert us.states.lookup(state.name) is None
 
 
 # test metaphone
@@ -115,6 +115,13 @@ def test_kentucky_uppercase():
 def test_wayoming():
     assert us.states.lookup("Wyoming") == us.states.WY
     assert us.states.lookup("Wayoming") is None
+
+
+def test_dc():
+    assert us.states.DC not in us.STATES
+    assert us.states.lookup("DC") == us.states.DC
+    assert us.states.lookup("District of Columbia") == us.states.DC
+    assert "DC" in us.states.mapping("abbr", "name")
 
 
 # shapefiles

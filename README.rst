@@ -225,6 +225,12 @@ Changelog
 * added type annotations
 
 
+2.0.2
+~~~~~
+
+* restore DC in lookup() and mapping()
+
+
 2.0.1
 ~~~~~
 
