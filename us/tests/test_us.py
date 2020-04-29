@@ -1,8 +1,7 @@
-from __future__ import unicode_literals
 from itertools import chain
 
-import jellyfish
-import pytest
+import jellyfish  # type: ignore
+import pytest  # type: ignore
 import pytz
 
 import us
@@ -95,7 +94,14 @@ def test_mapping():
 def test_obsolete_mapping():
     mapping = us.states.mapping("abbr", "fips")
     for state in us.states.OBSOLETE:
-        assert state.abbr in mapping
+        assert state.abbr not in mapping
+
+
+def test_custom_mapping():
+    mapping = us.states.mapping("abbr", "fips", states=[us.states.DC, us.states.MD])
+    assert len(mapping) == 2
+    assert "DC" in mapping
+    assert "MD" in mapping
 
 
 # known bugs
@@ -119,7 +125,7 @@ def test_head():
     import requests
 
     for state in us.STATES_AND_TERRITORIES:
-        for region, url in state.shapefile_urls().items():
+        for url in state.shapefile_urls().values():
             resp = requests.head(url)
             assert resp.status_code == 200
 
@@ -140,10 +146,14 @@ def test_territories():
 
 
 def test_contiguous():
-    # Lower 48 + DC
+    # Lower 48
     assert len(us.STATES_CONTIGUOUS) == 48
 
 
 def test_continental():
-    # Lower 48 + DC + Alaska
+    # Lower 48 + Alaska
     assert len(us.STATES_CONTINENTAL) == 49
+
+
+def test_dc():
+    assert us.states.DC not in us.STATES

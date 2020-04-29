@@ -1,4 +1,4 @@
-from .states import (  # noqa
+from .states import (
     STATES,
     STATES_CONTIGUOUS,
     STATES_CONTINENTAL,

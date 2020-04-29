@@ -36,16 +36,16 @@ Easy access to state information: ::
     >>> us.states.MD
     <State:Maryland>
     >>> us.states.MD.fips
-    u'24'
+    '24'
     >>> us.states.MD.name
-    u'Maryland'
+    'Maryland'
     >>> us.states.MD.is_contiguous
     True
 
 Includes territories too: ::
 
     >>> us.states.VI.name
-    u'Virgin Islands'
+    'Virgin Islands'
     >>> us.states.VI.is_territory
     True
     >>> us.states.MD.is_territory
@@ -54,22 +54,27 @@ Includes territories too: ::
 List of all (actual) states: ::
 
     >>> us.states.STATES
-    [<State:Alabama>, <State:Alaska>, <State:Arizona>, <State:Arkansas>,...
+    [<State:Alabama>, <State:Alaska>, <State:Arizona>, <State:Arkansas>, ...
     >>> us.states.TERRITORIES
-    [<State:American Samoa>, <State:Guam>, <State:Northern Mariana Islands>,...
+    [<State:American Samoa>, <State:Guam>, <State:Northern Mariana Islands>, ...
 
 And the whole shebang, if you want it: ::
 
     >>> us.states.STATES_AND_TERRITORIES
-    [<State:Alabama>, <State:Alaska>, <State:American Samoa>,...
+    [<State:Alabama>, <State:Alaska>, <State:American Samoa>, ...
 
 For convenience, `STATES`, `TERRITORIES`, and `STATES_AND_TERRITORIES` can be
 accessed directly from the `us` module: ::
 
     >>> us.states.STATES
-    [<State:Alabama>, <State:Alaska>, <State:Arizona>, <State:Arkansas>,...
+    [<State:Alabama>, <State:Alaska>, <State:Arizona>, <State:Arkansas>, ...
     >>> us.STATES
-    [<State:Alabama>, <State:Alaska>, <State:Arizona>, <State:Arkansas>,...
+    [<State:Alabama>, <State:Alaska>, <State:Arizona>, <State:Arkansas>, ...
+
+Some states like to be fancy and call themselves commonwealths: ::
+
+    >>> us.states.COMMONWEALTHS
+    [<State:Kentucky>, <State:Massachusetts>, <State:Pennsylvania>, <State:Virginia>]
 
 There's also a list of obsolete territories: ::
 
@@ -91,7 +96,7 @@ Get useful information: ::
 
     >>> state = us.states.lookup('maryland')
     >>> state.abbr
-    u'MD'
+    'MD'
 
 
 And for those days that you just can't remember how to spell Mississippi,
@@ -104,33 +109,26 @@ we've got phonetic name matching too: ::
 Shapefiles
 ----------
 
-You want shapefiles too? Gotcha covered.
+You want shapefiles too? As long as you want 2010 shapefiles, we've gotcha covered.
 
 ::
 
-    >>> shpurls = us.states.MD.shapefile_urls()
-    >>> for region, url in shpurls.items():
-    ...   print "%s: %s" % (region, url)
-    ...
-    county: http://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip
-    state: http://www2.census.gov/geo/tiger/TIGER2010/STATE/2010/tl_2010_24_state10.zip
-    cd: http://www2.census.gov/geo/tiger/TIGER2010/CD/111/tl_2010_24_cd111.zip
-    zcta: http://www2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_24_zcta510.zip
-    tract: http://www2.census.gov/geo/tiger/TIGER2010/TRACT/2010/tl_2010_24_tract10.zip
+    >>> urls = us.states.MD.shapefile_urls()
+    >>> sorted(urls.keys())
+    ['block', 'blockgroup', 'cd', 'county', 'state', 'tract', 'zcta']
+    >>> urls['block']
+    'https://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2010/tl_2010_24_tabblock10.zip'
 
 The `shapefile_urls()` method on the State object generates shapefile URLs for
 the following regions:
 
-* state
+* block
+* blockgroup
+* census tract (tract)
+* congressional district (cd)
 * county
-* congressional district
+* state
 * zcta
-* census tract
-
-If you know what region you want, you can explicitly request it: ::
-
-    >>> us.states.MD.shapefile_urls('county')
-    u'http://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip'
 
 
 Mappings
@@ -142,9 +140,30 @@ method will generate a lookup between two specified fields.
 ::
 
     >>> us.states.mapping('fips', 'abbr')
-    {u'30': u'MT', u'54': u'WV', u'42': u'PA', u'48': u'TX', u'45': u'SC',...
+    {'01': 'AL', '02': 'AK', '04': 'AZ', '05': 'AR', '06': 'CA', ...
     >>> us.states.mapping('abbr', 'name')
-    {u'WA': u'Washington', u'VA': u'Virginia', u'DE': u'Delaware',...
+    {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', ...
+
+This method uses `us.STATES_AND_TERRITORIES` as the default list of states
+it will create a mapping for, but this can be overridden by passing an
+additional states argument: ::
+
+    >>> us.states.mapping('fips', 'abbr', states=[us.states.DC])
+    {'11': 'DC'}
+
+
+DC should be granted statehood
+------------------------------
+
+Washington, DC does not appear in `us.STATES` or any of the
+related state lists, but is often treated as a state in practice and
+should be granted statehood anyway. DC can be automatically included in these
+lists by setting a `DC_STATEHOOD` environment variable to any truthy value
+before importing this package.
+
+::
+
+    DC_STATEHOOD=1
 
 
 CLI
@@ -164,46 +183,54 @@ When you need to know state information RIGHT AWAY, there's the *states* script.
         ap_abbr: Md.
         capital: Annapolis
         capital_tz: America/New_York
+        is_contiguous: True
+        is_continental: True
         is_obsolete: False
         name_metaphone: MRLNT
         statehood_year: 1788
         time_zones: America/New_York
 
       shapefiles:
-        blockgroup: http://www2.census.gov/geo/tiger/TIGER2010/BG/2010/tl_2010_24_bg10.zip
-        cd: http://www2.census.gov/geo/tiger/TIGER2010/CD/111/tl_2010_24_cd111.zip
-        county: http://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip
-        state: http://www2.census.gov/geo/tiger/TIGER2010/STATE/2010/tl_2010_24_state10.zip
-        tract: http://www2.census.gov/geo/tiger/TIGER2010/TRACT/2010/tl_2010_24_tract10.zip
-        zcta: http://www2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_24_zcta510.zip
-        block: http://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2010/tl_2010_24_tabblock10.zip
+        tract: https://www2.census.gov/geo/tiger/TIGER2010/TRACT/2010/tl_2010_24_tract10.zip
+        cd: https://www2.census.gov/geo/tiger/TIGER2010/CD/111/tl_2010_24_cd111.zip
+        county: https://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip
+        state: https://www2.census.gov/geo/tiger/TIGER2010/STATE/2010/tl_2010_24_state10.zip
+        zcta: https://www2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_24_zcta510.zip
+        block: https://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2010/tl_2010_24_tabblock10.zip
+        blockgroup: https://www2.census.gov/geo/tiger/TIGER2010/BG/2010/tl_2010_24_bg10.zip
 
 
 Running Tests
 -------------
 
-CircleCI is set up to automatically run unit tests against any new commits to
-the repo. To run these tests yourself in a standardized, Dockerized
-environment, install
-`the CircleCI CLI <https://circleci.com/docs/2.0/local-cli/>`_, and then
-execute the tests with: ::
+GitHub Actions are set up to automatically run unit tests against any new
+commits to the repo. To run these tests yourself: ::
 
-    circleci local execute --job build
-
-Alternatively, you can run tests against only your current version of Python,
-using: ::
-
-    pytest tests
+    pipenv install --dev
+    pipenv run pytest
 
 
 Changelog
 ---------
+
+3.0.0
+~~~~~
+
+* upgrade to jellyfish 0.7.2
+* drop support for Python 2.7
+* add us.states.COMMONWEALTHS list of states that call themselves commonwealths 🎩
+* add DC to STATES, STATES_AND_TERRITORIES, STATES_CONTIGUOUS, or STATES_CONTINENTAL when DC_STATEHOOD environment variable is set
+* remove `region` parameter from `shapefile_urls()` method
+* `mapping()` no longer includes obsolete states
+* added type annotations
+
 
 2.0.1
 ~~~~~
 
 * fix Python 2.7 tests that ran with Python 3
 * revert to jellyfish 0.6.1 to support Python 2.7
+
 
 2.0.0
 ~~~~~
