@@ -91,7 +91,7 @@ def lookup(val, field=None, use_cache=True):
     if use_cache and cache_key in _lookup_cache:
         return _lookup_cache[cache_key]
 
-    for state in itertools.chain(STATES_AND_TERRITORIES, OBSOLETE):
+    for state in itertools.chain(STATES_AND_TERRITORIES, [DC], OBSOLETE):
         if val == getattr(state, field):
             _lookup_cache[cache_key] = state
             return state
@@ -99,7 +99,7 @@ def lookup(val, field=None, use_cache=True):
 
 def mapping(from_field, to_field, states=None):
     if states is None:
-        states = itertools.chain(STATES_AND_TERRITORIES, OBSOLETE)
+        states = itertools.chain(STATES_AND_TERRITORIES, [DC], OBSOLETE)
     return dict((getattr(s, from_field), getattr(s, to_field)) for s in states)
 
 

@@ -111,6 +111,13 @@ def test_wayoming():
     assert us.states.lookup("Wayoming") is None
 
 
+def test_dc():
+    assert us.states.DC not in us.STATES
+    assert us.states.lookup("DC") == us.states.DC
+    assert us.states.lookup("District of Columbia") == us.states.DC
+    assert "DC" in us.states.mapping("abbr", "name")
+
+
 # shapefiles
 
 
