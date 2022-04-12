@@ -13,7 +13,7 @@ setup(
     license="BSD",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["jellyfish==0.7.2"],
+    install_requires=["jellyfish==0.9.0"],
     entry_points={"console_scripts": ["states = us.cli.states:main"]},
     platforms=["any"],
     classifiers=[
