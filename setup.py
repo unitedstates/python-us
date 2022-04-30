@@ -4,7 +4,7 @@ long_description = open("README.rst").read()
 
 setup(
     name="us",
-    version="3.1.0",
+    version="4.0.0",
     author="Jeremy Carbaugh",
     author_email="jeremy@jcarbaugh.com",
     url="https://github.com/unitedstates/python-us",
@@ -17,7 +17,6 @@ setup(
     entry_points={"console_scripts": ["states = us.cli.states:main"]},
     platforms=["any"],
     classifiers=[
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",

@@ -213,7 +213,7 @@ commits to the repo. To run these tests yourself: ::
 Changelog
 ---------
 
-3.1.0
+4.0.0
 ~~~~~
 
 * upgrade to jellyfish 0.9.0
