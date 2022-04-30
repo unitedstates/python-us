@@ -213,6 +213,13 @@ commits to the repo. To run these tests yourself: ::
 Changelog
 ---------
 
+3.1.0
+~~~~~
+
+* upgrade to jellyfish 0.9.0
+* adds Python 3.10 support
+
+
 3.0.0
 ~~~~~
 
