@@ -10,10 +10,10 @@ importlib_metadata = "*"
 pytest = "*"
 pytz = "*"
 requests = "<3.0"
+typing-extensions = "*"
 
 [packages]
 jellyfish = "==0.9.0"
-
 
 [pipenv]
 allow_prereleases = true
