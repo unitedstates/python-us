@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 black = "==22.3.0"
 flake8 = "*"
-importlib_metadata = "*"
+importlib_metadata = {version = "*", markers = "python_version < '3.8'"}
 pytest = "*"
 pytz = "*"
 requests = "<3.0"
