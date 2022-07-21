@@ -51,16 +51,22 @@ class State:
         if not fips:
             return None
 
-        base = f"https://www2.census.gov/geo/tiger/TIGER2010/"
+        base = f"https://www2.census.gov/geo/tiger/TIGER2020/"
+        base_2010 = f"https://www2.census.gov/geo/tiger/TIGER2010/"
         urls = {
-            "tract": urljoin(base, f"TRACT/2010/tl_2010_{fips}_tract10.zip"),
-            "cd": urljoin(base, f"CD/111/tl_2010_{fips}_cd111.zip"),
-            "county": urljoin(base, f"COUNTY/2010/tl_2010_{fips}_county10.zip"),
-            "state": urljoin(base, f"STATE/2010/tl_2010_{fips}_state10.zip"),
-            "zcta": urljoin(base, f"ZCTA5/2010/tl_2010_{fips}_zcta510.zip"),
-            "block": urljoin(base, f"TABBLOCK/2010/tl_2010_{fips}_tabblock10.zip"),
-            "blockgroup": urljoin(base, f"BG/2010/tl_2010_{fips}_bg10.zip"),
+            "tract": urljoin(base, f"TRACT/2020/tl_2020_{fips}_tract.zip"),
+            "block": urljoin(base, f"TABBLOCK/2020/tl_2020_{fips}_tabblock10.zip"),
+            "blockgroup": urljoin(base, f"BG/2020/tl_2020_{fips}_bg.zip"),
+            "upperchamber": urljoin(base, f"SLDU/2020/tl_2020_{fips}_sldu.zip"),
+            # following don't have 2020 directories yet
+            "cd": urljoin(base_2010, f"CD/111/tl_2010_{fips}_cd111.zip"),
+            "county": urljoin(base_2010, f"COUNTY/2010/tl_2010_{fips}_county10.zip"),
+            "state": urljoin(base_2010, f"STATE/2010/tl_2010_{fips}_state10.zip"),
+            "zcta": urljoin(base_2010, f"ZCTA5/2010/tl_2010_{fips}_zcta510.zip"),
         }
+        # unicameral legislatures don't have a lower chamber
+        if self.abbr not in ["DC", "NE"]:
+            urls["lowerchamber"] = urljoin(base, f"SLDL/2020/tl_2020_{fips}_sldl.zip")
 
         return urls
 
