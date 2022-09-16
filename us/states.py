@@ -51,8 +51,8 @@ class State:
         if not fips:
             return None
 
-        base = f"https://www2.census.gov/geo/tiger/TIGER2020/"
-        base_2010 = f"https://www2.census.gov/geo/tiger/TIGER2010/"
+        base = "https://www2.census.gov/geo/tiger/TIGER2020/"
+        base_2010 = "https://www2.census.gov/geo/tiger/TIGER2010/"
         urls = {
             "tract": urljoin(base, f"TRACT/2020/tl_2020_{fips}_tract.zip"),
             "block": urljoin(base, f"TABBLOCK/2020/tl_2020_{fips}_tabblock10.zip"),
