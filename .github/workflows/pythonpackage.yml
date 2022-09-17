@@ -17,8 +17,14 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install pipenv
+    - name: Install pipenv for python 3.6
       uses: dschep/install-pipenv-action@v1
+      if: ${{ matrix.python-version == '3.6' }}
+      with:
+        version: 2022.4.20
+    - name: Install pipenv for modern python
+      uses: dschep/install-pipenv-action@v1
+      if: ${{ matrix.python-version != '3.6' }}
     - name: Install dependencies
       run: |
         pipenv install --dev --python `which python`
