@@ -32,4 +32,5 @@ jobs:
         pipenv run black --check us
     - name: Test with pytest
       run: |
-        pipenv run pytest --timezone
+        pipenv run pytest us/tests --timezone
+        DC_STATEHOOD=yes pipenv run us/tests --dc-statehood 

@@ -117,8 +117,13 @@ def test_wayoming():
     assert us.states.lookup("Wayoming") is None
 
 
-def test_dc():
+@pytest.mark.skipif("config.getoption('dc_statehood')")
+def test_dc_nostate():
     assert us.states.DC not in us.STATES
+
+
+@pytest.mark.skipif("not config.getoption('dc_statehood')")
+def test_dc_state():
     assert us.states.lookup("DC") == us.states.DC
     assert us.states.lookup("District of Columbia") == us.states.DC
     assert "DC" in us.states.mapping("abbr", "name")
@@ -159,19 +164,38 @@ def test_obsolete():
     assert len(us.OBSOLETE) == 3
 
 
+@pytest.mark.skipif("config.getoption('dc_statehood')")
 def test_states():
     assert len(us.STATES) == 50
+
+
+@pytest.mark.skipif("not config.getoption('dc_statehood')")
+def test_states_dc():
+    assert len(us.STATES) == 51
 
 
 def test_territories():
     assert len(us.TERRITORIES) == 6
 
 
+@pytest.mark.skipif("config.getoption('dc_statehood')")
 def test_contiguous():
     # Lower 48
     assert len(us.STATES_CONTIGUOUS) == 48
 
 
+@pytest.mark.skipif("not config.getoption('dc_statehood')")
+def test_contiguous_dc():
+    assert len(us.STATES_CONTIGUOUS) == 49
+
+
+@pytest.mark.skipif("config.getoption('dc_statehood')")
 def test_continental():
     # Lower 48 + Alaska
     assert len(us.STATES_CONTINENTAL) == 49
+
+
+@pytest.mark.skipif("not config.getoption('dc_statehood')")
+def test_continental_dc():
+    assert len(us.STATES_CONTINENTAL) == 50
+
