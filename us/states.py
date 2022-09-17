@@ -106,6 +106,7 @@ def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional
     cache_key = f"{field}:{val}"
     if use_cache and cache_key in _lookup_cache:
         matched_state = _lookup_cache[cache_key]
+        return matched_state
 
     for state in STATES_AND_TERRITORIES:
         if val == getattr(state, field):

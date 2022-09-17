@@ -124,6 +124,21 @@ def test_dc():
     assert "DC" in us.states.mapping("abbr", "name")
 
 
+def test_cache():
+    key = "abbr:NC"
+    sentinel = object()
+
+    us.states._lookup_cache.clear()
+    assert us.states.lookup("NC") == us.states.NC
+    assert key in us.states._lookup_cache
+
+    # We can't mock the cache so manipulate it directly
+    us.states._lookup_cache[key] = sentinel
+    assert us.states.lookup("NC") == sentinel
+
+    us.states._lookup_cache.clear()
+
+
 # shapefiles
 
 
