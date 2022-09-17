@@ -198,4 +198,3 @@ def test_continental():
 @pytest.mark.skipif("not config.getoption('dc_statehood')")
 def test_continental_dc():
     assert len(us.STATES_CONTINENTAL) == 50
-
