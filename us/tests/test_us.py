@@ -164,7 +164,7 @@ def test_states():
 
 
 def test_territories():
-    assert len(us.TERRITORIES) == 5
+    assert len(us.TERRITORIES) == 6
 
 
 def test_contiguous():
