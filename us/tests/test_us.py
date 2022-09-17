@@ -175,7 +175,3 @@ def test_contiguous():
 def test_continental():
     # Lower 48 + Alaska
     assert len(us.STATES_CONTINENTAL) == 49
-
-
-def test_dc():
-    assert us.states.DC not in us.STATES
