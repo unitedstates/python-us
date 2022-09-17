@@ -10,6 +10,9 @@ importlib_metadata = {version = "*", markers = "python_version < '3.8'"}
 pytest = "*"
 pytz = "*"
 requests = "<3.0"
+geopandas = "*"
+rtree = "*"
+iso6709 = "*"
 
 [packages]
 jellyfish = "<1.0"

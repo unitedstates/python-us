@@ -157,7 +157,15 @@ AK = State(
         "capital": "Juneau",
         "capital_tz": "America/Anchorage",
         "ap_abbr": "Alaska",
-        "time_zones": ["America/Anchorage", "America/Adak"],
+        "time_zones": [
+            "America/Anchorage",
+            "America/Adak",
+            "America/Juneau",
+            "America/Sitka",
+            "America/Metlakatla",
+            "America/Yakutat",
+            "America/Nome",
+        ],
         "name_metaphone": "ALSK",
     }
 )
@@ -423,7 +431,7 @@ ID = State(
         "capital": "Boise",
         "capital_tz": "America/Denver",
         "ap_abbr": "Idaho",
-        "time_zones": ["America/Denver", "America/Los_Angeles"],
+        "time_zones": ["America/Denver", "America/Los_Angeles", "America/Boise"],
         "name_metaphone": "ITH",
     }
 )
@@ -633,7 +641,6 @@ UM = State(
         "ap_abbr": None,
         "time_zones": ["Pacific/Pago_Pago"],
         "name_metaphone": "MTW ISLNTS",
-
     }
 )
 
@@ -651,7 +658,12 @@ MI = State(
         "capital": "Lansing",
         "capital_tz": "America/New_York",
         "ap_abbr": "Mich.",
-        "time_zones": ["America/New_York", "America/Chicago"],
+        "time_zones": [
+            "America/New_York",
+            "America/Chicago",
+            "America/Detroit",
+            "America/Menominee",
+        ],
         "name_metaphone": "MXKN",
     }
 )
