@@ -213,6 +213,16 @@ commits to the repo. To run these tests yourself: ::
 Changelog
 ---------
 
+3.0.1
+~~~~~
+
+* Relax constraint on jellyfish dependency
+* Add the Midway Islands as a territory
+* Add the 2020 TIGER URLs to shapefile_urls() where possible
+* Sync all states with the latest timezone information
+* Fix bug with lookup() caching logic
+
+
 3.0.0
 ~~~~~
 
