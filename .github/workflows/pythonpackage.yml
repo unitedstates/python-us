@@ -27,7 +27,7 @@ jobs:
       if: ${{ matrix.python-version != '3.6' }}
     - name: Install dependencies
       run: |
-        pipenv install --dev --python `which python`
+        pipenv install --skip-lock --dev --python `which python`
     - name: Linting and formatting
       run: |
         # stop the build if there are Python syntax errors or undefined names
