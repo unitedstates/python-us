@@ -39,4 +39,4 @@ jobs:
     - name: Test with pytest
       run: |
         pipenv run pytest us/tests --timezone
-        DC_STATEHOOD=yes pipenv run us/tests --dc-statehood 
+        DC_STATEHOOD=yes pipenv run pytest us/tests --dc-statehood 
