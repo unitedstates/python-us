@@ -76,7 +76,10 @@ def test_obsolete_lookup():
 def test_additional_metaphones():
     assert us.states.lookup("New Hamshire") == us.states.NH
 
-    assert us.states.lookup("Nebraska", additional_metaphones={"WNTRWL": "NBRSK"}) == us.states.NE
+    assert (
+        us.states.lookup("Nebraska", additional_metaphones={"WNTRWL": "NBRSK"})
+        == us.states.NE
+    )
 
 
 # test metaphone

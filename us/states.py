@@ -88,7 +88,12 @@ DEFAULT_ADDITIONAL_METAPHONES = {
 }
 
 
-def lookup(val, field: Optional[str] = None, use_cache: bool = True, additional_metaphones: Dict[str, str] = DEFAULT_ADDITIONAL_METAPHONES) -> Optional[State]:
+def lookup(
+    val,
+    field: Optional[str] = None,
+    use_cache: bool = True,
+    additional_metaphones: Dict[str, str] = DEFAULT_ADDITIONAL_METAPHONES,
+) -> Optional[State]:
     """Semi-fuzzy state lookup. This method will make a best effort
     attempt at finding the state based on the lookup value provided.
 
