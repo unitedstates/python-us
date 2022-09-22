@@ -184,7 +184,7 @@ def test_states_dc():
 
 
 def test_territories():
-    assert len(us.TERRITORIES) == 6
+    assert len(us.TERRITORIES) == 5
 
 
 @pytest.mark.skipif("config.getoption('dc_statehood')")
