@@ -1320,7 +1320,7 @@ WY = State(
 
 
 OBSOLETE: List[State] = [DK, OL, PI]
-TERRITORIES: List[State] = [AS, GU, UM, MP, PR, VI]
+TERRITORIES: List[State] = [AS, GU, MP, PR, VI]
 STATES: List[State] = [
     AL,
     AK,
