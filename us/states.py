@@ -71,7 +71,18 @@ class State:
         return urls
 
 
-def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional[State]:
+DEFAULT_ADDITIONAL_METAPHONES = {
+    "N HMXR": "N HMPXR",  # New Hamshire -> New Hampshire
+    "WXNKTN TK": "TSTRKT OF KLMB",  # Washington, D.C. -> District of Columbia
+    "WXNKTN STT": "WXNKTN",  # Washington State -> Washington
+    "KMNWL0 OF KNTK": "KNTK",  # Commonwealth of Kentucky -> Kentucky
+    "KMNWL0 OF MSXSTS": "MSXSTS",  # Commonwealth of Massachusetts -> Massachusetts
+    "KMNWL0 OF PNSLFN": "PNSLFN",  # Commonwealth of Pennsylvania -> Pennsylvania
+    "KMNWL0 OF FRJN": "FRJN",  # Commonwealth of Virginia -> Virginia
+}
+
+
+def lookup(val, field: Optional[str] = None, use_cache: bool = True, additional_metaphones: Dict[str, str] = DEFAULT_ADDITIONAL_METAPHONES) -> Optional[State]:
     """Semi-fuzzy state lookup. This method will make a best effort
     attempt at finding the state based on the lookup value provided.
 
@@ -88,6 +99,10 @@ def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional
 
     This method caches non-None results, but can the cache can be bypassed
     with the `use_cache=False` argument.
+
+    You can pass extra metaphones via the `additional_metaphones` argument.
+    Use this to catch typos or alternate names for states that defeat the
+    metaphone algorithm. A default set of alternatives is provided.
     """
 
     matched_state = None
@@ -101,6 +116,8 @@ def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional
         else:
             val = jellyfish.metaphone(val)
             field = "name_metaphone"
+
+            val = additional_metaphones.get(val, val)
 
     # see if result is in cache
     cache_key = f"{field}:{val}"
