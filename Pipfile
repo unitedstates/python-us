@@ -4,15 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-black = "==19.10b0"
+black = "*"
 flake8 = "*"
-importlib_metadata = {version = "*", markers = "python_version < '3.8'"}
+importlib_metadata = "*"
 pytest = "*"
 pytz = "*"
 requests = "<3.0"
 
 [packages]
-jellyfish = "==0.7.2"
+jellyfish = "==0.11.2"
 
 
 [pipenv]
