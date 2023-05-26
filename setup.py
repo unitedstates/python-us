@@ -4,7 +4,7 @@ long_description = open("README.rst").read()
 
 setup(
     name="us",
-    version="3.0.1",
+    version="3.1.1",
     author="Jeremy Carbaugh",
     author_email="jeremy@jcarbaugh.com",
     url="https://github.com/unitedstates/python-us",
