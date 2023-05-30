@@ -3,7 +3,6 @@ import us
 
 
 def main():
-
     import argparse
 
     parser = argparse.ArgumentParser(description="Lookup state information")
@@ -19,7 +18,6 @@ def main():
         sys.stdout.write("Sorry, couldn't find a matching state.\n")
 
     else:
-
         data = state.__dict__.copy()
 
         region = "territory" if data.pop("is_territory") else "state"
@@ -36,7 +34,6 @@ def main():
         sys.stdout.write("  other attributes:\n")
 
         for key in sorted(data.keys()):
-
             val = data[key]
 
             if isinstance(val, (list, tuple)):

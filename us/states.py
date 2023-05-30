@@ -1,7 +1,6 @@
-import itertools
 import os
 import re
-from typing import Any, Dict, Iterable, List, Optional, Union
+from typing import Any, Dict, Iterable, List, Optional
 from urllib.parse import urljoin
 
 import jellyfish  # type: ignore
@@ -16,7 +15,6 @@ _lookup_cache: Dict[str, "State"] = {}
 
 
 class State:
-
     abbr: str
     ap_abbr: Optional[str]
     capital: Optional[str]
@@ -42,8 +40,8 @@ class State:
         return self.name
 
     def shapefile_urls(self) -> Optional[Dict[str, str]]:
-        """ Shapefiles are available directly from the US Census Bureau:
-            https://www.census.gov/cgi-bin/geo/shapefiles/index.php
+        """Shapefiles are available directly from the US Census Bureau:
+        https://www.census.gov/cgi-bin/geo/shapefiles/index.php
         """
 
         fips = self.fips
@@ -51,7 +49,7 @@ class State:
         if not fips:
             return None
 
-        base = f"https://www2.census.gov/geo/tiger/TIGER2010/"
+        base = "https://www2.census.gov/geo/tiger/TIGER2010/"
         urls = {
             "tract": urljoin(base, f"TRACT/2010/tl_2010_{fips}_tract10.zip"),
             "cd": urljoin(base, f"CD/111/tl_2010_{fips}_cd111.zip"),
@@ -66,22 +64,22 @@ class State:
 
 
 def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional[State]:
-    """ Semi-fuzzy state lookup. This method will make a best effort
-        attempt at finding the state based on the lookup value provided.
+    """Semi-fuzzy state lookup. This method will make a best effort
+    attempt at finding the state based on the lookup value provided.
 
-          * two digits will search for FIPS code
-          * two letters will search for state abbreviation
-          * anything else will try to match the metaphone of state names
+      * two digits will search for FIPS code
+      * two letters will search for state abbreviation
+      * anything else will try to match the metaphone of state names
 
-        Metaphone is used to allow for incorrect, but phonetically accurate,
-        spelling of state names.
+    Metaphone is used to allow for incorrect, but phonetically accurate,
+    spelling of state names.
 
-        Exact matches can be done on any attribute on State objects by passing
-        the `field` argument. This skips the fuzzy-ish matching and does an
-        exact, case-sensitive comparison against the specified field.
+    Exact matches can be done on any attribute on State objects by passing
+    the `field` argument. This skips the fuzzy-ish matching and does an
+    exact, case-sensitive comparison against the specified field.
 
-        This method caches non-None results, but can the cache can be bypassed
-        with the `use_cache=False` argument.
+    This method caches non-None results, but can the cache can be bypassed
+    with the `use_cache=False` argument.
     """
 
     matched_state = None
