@@ -63,8 +63,8 @@ class State:
         return urls
 
 
-def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional[State]:
-    """Semi-fuzzy state lookup. This method will make a best effort
+def lookup(val, field: Optional[str] = None, use_cache: bool = True, deep_lookup: bool = False) -> Optional[State]:
+    """Semi-fuzzy state lookup. This method will make the best effort
     attempt at finding the state based on the lookup value provided.
 
       * two digits will search for FIPS code
@@ -104,6 +104,19 @@ def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional
             matched_state = state
             if use_cache:
                 _lookup_cache[cache_key] = state
+
+    if not matched_state and deep_lookup:
+        val = " ".join(
+            val.rstrip(".")
+            .lower()
+            .replace("state", "").replace(" of ", "").replace("a ", "").replace("the ", "")
+            .split()
+        )
+        for state in STATES_AND_TERRITORIES:
+            if state.name.lower().startswith(val):
+                matched_state = state
+                if use_cache:
+                    _lookup_cache[cache_key] = state
 
     return matched_state
 
