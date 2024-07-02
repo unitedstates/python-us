@@ -206,8 +206,8 @@ Running Tests
 GitHub Actions are set up to automatically run unit tests against any new
 commits to the repo. To run these tests yourself: ::
 
-    pipenv install --dev
-    pipenv run pytest
+    pip install -e .[dev]
+    pytest .
 
 
 Changelog
