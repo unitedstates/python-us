@@ -1,35 +1,69 @@
 name: Tests
 
-on: [push]
+on: [pull_request]
 
 jobs:
-  build:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+          architecture: x64
 
+      - name: Install dependencies
+        run: pip install -e .[dev]
+
+      - name: Linting
+        run: |
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          pipenv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+      - name: Check code format with Black
+        run: black --check us
+
+  testing:
+    needs: linting
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
+      max-parallel: 6
       matrix:
-        python-version: [3.7, 3.8, 3.9, "3.10", 3.11]
-
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11', '3.12']
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install pipenv
-      uses: dschep/install-pipenv-action@v1
     - name: Install dependencies
       run: |
-        pipenv install --dev --python `which python`
-    - name: Linting and formatting
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        pipenv run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        pipenv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-        # check formatting
-        pipenv run black --check us
+        pip install -e .[dev]
     - name: Test with pytest
       run: |
-        pipenv run pytest
+        pytest .
+
+  building:
+    needs: linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+          architecture: x64
+
+      - name: Install dependencies
+        run: |
+          pip install setuptools build
+
+      - name: Builds package
+        run: |
+          python -m build . -w -n
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheels
+          path: ./dist/*.whl

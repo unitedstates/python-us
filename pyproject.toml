@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools"]
+
+[project]
+name = "us"
+description = "US state meta information and other fun stuff"
+readme = "README.rst"
+urls.Homepage = "https://github.com/unitedstates/python-us/"
+urls."Issue tracker" = "https://github.com/unitedstates/python-us/issues"
+requires-python = ">=3.7"
+dynamic = ["version"]
+authors = [{ name = "Jeremy Carbaugh", email = "jeremy@jcarbaugh.com" }]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12"
+]
+license = { file = "LICENSE"}
+
+dependencies = ['jellyfish']
+
+[project.optional-dependencies]
+dev = ['flake8', 'black', 'pytest', 'pytz']
+
+
+[tool.setuptools.dynamic]
+version = { attr = "us.version.__version__" }
+
+[tool.black]
+line-length = 120
+target-version = ['py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'

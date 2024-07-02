@@ -1,6 +1,8 @@
 .env
 
 # Compilation and caching
+build/
+dist/
 .cache/
 .mypy_cache/
 .pytest_cache/
