@@ -86,9 +86,7 @@ def test_jellyfish_metaphone():
 
 def test_mapping():
     states = us.STATES[:5]
-    assert us.states.mapping("abbr", "fips", states=states) == dict(
-        (s.abbr, s.fips) for s in states
-    )
+    assert us.states.mapping("abbr", "fips", states=states) == dict((s.abbr, s.fips) for s in states)
 
 
 def test_obsolete_mapping():
