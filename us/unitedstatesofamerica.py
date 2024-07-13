@@ -1,4 +1,7 @@
 name = "United States of America"
 abbr = "US"
 
-__all__ = ["name", "abbr"]
+import datetime
+birthday = datetime.date(1776, 7, 4)
+
+__all__ = ["name", "abbr", "birthday"]
