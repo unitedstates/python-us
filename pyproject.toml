@@ -4,7 +4,7 @@ requires = ["setuptools"]
 [project]
 name = "us"
 description = "US state meta information and other fun stuff"
-readme = "README.rst"
+readme = "README.md"
 urls.Homepage = "https://github.com/unitedstates/python-us/"
 urls."Issue tracker" = "https://github.com/unitedstates/python-us/issues"
 requires-python = ">=3.8"
