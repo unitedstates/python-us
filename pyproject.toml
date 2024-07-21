@@ -22,9 +22,11 @@ license = { file = "LICENSE"}
 
 dependencies = ['jellyfish']
 
+[project.scripts]
+states = "us.cli.states:main"
+
 [project.optional-dependencies]
 dev = ['flake8', 'black', 'pytest', 'pytz']
-
 
 [tool.setuptools.dynamic]
 version = { attr = "us.version.__version__" }
