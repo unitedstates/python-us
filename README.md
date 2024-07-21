@@ -195,24 +195,24 @@ $ states md
     FIPS code: 24
 
     other attributes:
-    ap_abbr: Md.
-    capital: Annapolis
-    capital_tz: America/New_York
-    is_contiguous: True
-    is_continental: True
-    is_obsolete: False
-    name_metaphone: MRLNT
-    statehood_year: 1788
-    time_zones: America/New_York
+      ap_abbr: Md.
+      capital: Annapolis
+      capital_tz: America/New_York
+      is_contiguous: True
+      is_continental: True
+      is_obsolete: False
+      name_metaphone: MRLNT
+      statehood_year: 1788
+      time_zones: America/New_York
 
     shapefiles:
-    tract: https://www2.census.gov/geo/tiger/TIGER2010/TRACT/2010/tl_2010_24_tract10.zip
-    cd: https://www2.census.gov/geo/tiger/TIGER2010/CD/111/tl_2010_24_cd111.zip
-    county: https://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip
-    state: https://www2.census.gov/geo/tiger/TIGER2010/STATE/2010/tl_2010_24_state10.zip
-    zcta: https://www2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_24_zcta510.zip
-    block: https://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2010/tl_2010_24_tabblock10.zip
-    blockgroup: https://www2.census.gov/geo/tiger/TIGER2010/BG/2010/tl_2010_24_bg10.zip
+      tract: https://www2.census.gov/geo/tiger/TIGER2010/TRACT/2010/tl_2010_24_tract10.zip
+      cd: https://www2.census.gov/geo/tiger/TIGER2010/CD/111/tl_2010_24_cd111.zip
+      county: https://www2.census.gov/geo/tiger/TIGER2010/COUNTY/2010/tl_2010_24_county10.zip
+      state: https://www2.census.gov/geo/tiger/TIGER2010/STATE/2010/tl_2010_24_state10.zip
+      zcta: https://www2.census.gov/geo/tiger/TIGER2010/ZCTA5/2010/tl_2010_24_zcta510.zip
+      block: https://www2.census.gov/geo/tiger/TIGER2010/TABBLOCK/2010/tl_2010_24_tabblock10.zip
+      blockgroup: https://www2.census.gov/geo/tiger/TIGER2010/BG/2010/tl_2010_24_bg10.zip
 ```
 
 ## Running Tests
