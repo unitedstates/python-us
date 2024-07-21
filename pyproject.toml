@@ -7,7 +7,7 @@ description = "US state meta information and other fun stuff"
 readme = "README.rst"
 urls.Homepage = "https://github.com/unitedstates/python-us/"
 urls."Issue tracker" = "https://github.com/unitedstates/python-us/issues"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 dynamic = ["version"]
 authors = [{ name = "Jeremy Carbaugh", email = "jeremy@jcarbaugh.com" }]
 classifiers = [
@@ -31,5 +31,5 @@ version = { attr = "us.version.__version__" }
 
 [tool.black]
 line-length = 120
-target-version = ['py39', 'py310', 'py311', 'py312']
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
 include = '\.pyi?$'
