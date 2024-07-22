@@ -1,5 +1,7 @@
 .env
 
+.venv/
+
 # Compilation and caching
 build/
 dist/
