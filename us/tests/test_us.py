@@ -73,6 +73,14 @@ def test_obsolete_lookup():
         assert us.states.lookup(state.name) is None
 
 
+def test_deep_lookup():
+    assert us.states.lookup("Cal.", field="name", deep_lookup=True) == us.states.CA
+    assert us.states.lookup(" Mary ", field="name", deep_lookup=True) == us.states.MD
+    assert us.states.lookup("The New York State ", field="name", deep_lookup=True) == us.states.NY
+    assert us.states.lookup(" a State of Washington", field="name", deep_lookup=True) == us.states.WA
+    assert us.states.lookup("State of the Washington", field="name", deep_lookup=True) == us.states.WA
+
+
 # test metaphone
 
 
