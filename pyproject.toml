@@ -27,7 +27,7 @@ dependencies = ['jellyfish']
 [project.scripts]
 states = "us.cli.states:main"
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = ['flake8', 'black', 'pytest', 'pytz']
 
 [tool.setuptools.dynamic]
