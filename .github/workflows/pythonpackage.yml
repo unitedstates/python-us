@@ -6,11 +6,11 @@ jobs:
   linting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set Python environment
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: 3.12
+          python-version: 3.14
           architecture: x64
 
       - name: Install dependencies
@@ -28,13 +28,13 @@ jobs:
     needs: linting
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 6
+      max-parallel: 7
       matrix:
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12']
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13', '3.14']
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
@@ -48,11 +48,11 @@ jobs:
     needs: linting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set Python environment
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: 3.12
+          python-version: 3.14
           architecture: x64
 
       - name: Install dependencies
@@ -63,7 +63,7 @@ jobs:
         run: |
           python -m build . -w -n
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: wheels
           path: ./dist/*.whl
