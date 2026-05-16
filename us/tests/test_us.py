@@ -6,7 +6,6 @@ import pytz
 
 import us
 
-
 # attribute
 
 

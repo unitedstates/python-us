@@ -30,7 +30,6 @@ class County:
         return self.name
 
 
-
 class State:
     abbr: str
     ap_abbr: Optional[str]
@@ -639,8 +638,7 @@ DK = State(
         "ap_abbr": None,
         "time_zones": ["America/Chicago"],
         "name_metaphone": "TKT",
-        "counties": [
-        ],
+        "counties": [],
     }
 )
 
@@ -1897,7 +1895,7 @@ MA = State(
         "time_zones": ["America/New_York"],
         "name_metaphone": "MSXSTS",
         "counties": [
-          County(**{"fips": "25001", "ns_code": "00606927", "name": "Barnstable County"}),
+            County(**{"fips": "25001", "ns_code": "00606927", "name": "Barnstable County"}),
             County(**{"fips": "25003", "ns_code": "00606928", "name": "Berkshire County"}),
             County(**{"fips": "25005", "ns_code": "00606929", "name": "Bristol County"}),
             County(**{"fips": "25007", "ns_code": "00606930", "name": "Dukes County"}),
