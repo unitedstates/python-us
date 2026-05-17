@@ -25,6 +25,23 @@ As per usual:
 pip install us
 ```
 
+or 
+
+```
+uv install us
+```
+
+
+## Development
+
+This project uses [uv](https://docs.astral.sh/uv/) for development.
+
+```
+uv sync
+uv run pytest
+uv run black --check us
+```
+
 
 ## Features
 

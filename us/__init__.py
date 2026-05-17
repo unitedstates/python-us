@@ -7,4 +7,4 @@ from .states import (  # noqa
     OBSOLETE,  # noqa
 )  # noqa
 from .unitedstatesofamerica import *  # noqa
-from .version import __version__ as version
+from .version import __version__ as version  # noqa
