@@ -312,7 +312,6 @@ AZ = State(
         "time_zones": ["America/Phoenix"],
         "name_metaphone": "ARSN",
         "counties": [
-            County(**{"fips": "STATEFPCOUNTYFP", "ns_code": "COUNTYNS", "name": "COUNTYNAME"}),
             County(**{"fips": "04001", "ns_code": "00025441", "name": "Apache County"}),
             County(**{"fips": "04003", "ns_code": "00025442", "name": "Cochise County"}),
             County(**{"fips": "04005", "ns_code": "00025443", "name": "Coconino County"}),
@@ -524,7 +523,6 @@ CO = State(
         "time_zones": ["America/Denver"],
         "name_metaphone": "KLRT",
         "counties": [
-            County(**{"fips": "STATEFPCOUNTYFP", "ns_code": "COUNTYNS", "name": "COUNTYNAME"}),
             County(**{"fips": "08001", "ns_code": "00198116", "name": "Adams County"}),
             County(**{"fips": "08003", "ns_code": "00198117", "name": "Alamosa County"}),
             County(**{"fips": "08005", "ns_code": "00198118", "name": "Arapahoe County"}),
@@ -1455,7 +1453,6 @@ KS = State(
         "time_zones": ["America/Chicago", "America/Denver"],
         "name_metaphone": "KNSS",
         "counties": [
-            County(**{"fips": "STATEFPCOUNTYFP", "ns_code": "COUNTYNS", "name": "COUNTYNAME"}),
             County(**{"fips": "20001", "ns_code": "00484970", "name": "Allen County"}),
             County(**{"fips": "20003", "ns_code": "00484971", "name": "Anderson County"}),
             County(**{"fips": "20005", "ns_code": "00484972", "name": "Atchison County"}),
