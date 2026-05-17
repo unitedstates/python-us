@@ -28,12 +28,11 @@ dependencies = ['jellyfish']
 states = "us.cli.states:main"
 
 [dependency-groups]
-dev = ['flake8', 'black', 'pytest', 'pytz']
+dev = ['ruff', 'pytest', 'pytz']
 
 [tool.setuptools.dynamic]
 version = { attr = "us.version.__version__" }
 
-[tool.black]
+[tool.ruff]
 line-length = 120
-target-version = ['py38', 'py39', 'py310', 'py311', 'py312', 'py313', 'py314']
-include = '\.pyi?$'
+target-version = "py38"

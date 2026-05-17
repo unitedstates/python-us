@@ -19,13 +19,11 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
-      - name: Linting
-        run: |
-          uv run flake8 . --exclude .venv,build,dist --count --select=E9,F63,F7,F82 --show-source --statistics
-          uv run flake8 . --exclude .venv,build,dist --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Lint with Ruff
+        run: uv run ruff check .
 
-      - name: Check code format with Black
-        run: uv run black --check us
+      - name: Check code format with Ruff
+        run: uv run ruff format --check us
 
   testing:
     needs: linting
