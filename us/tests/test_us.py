@@ -1,3 +1,4 @@
+import re
 from itertools import chain
 
 import jellyfish  # type: ignore
@@ -5,6 +6,7 @@ import pytest  # type: ignore
 import pytz
 
 import us
+from us.states import County
 
 # attribute
 
@@ -154,3 +156,37 @@ def test_contiguous():
 def test_continental():
     # Lower 48 + Alaska
     assert len(us.STATES_CONTINENTAL) == 49
+
+
+# counties
+
+
+COUNTY_FIPS_RE = re.compile(r"^\d{5}$")
+
+
+def test_county_class():
+    county = County(fips="01001", ns_code="00161526", name="Autauga County")
+    assert county.fips == "01001"
+    assert county.ns_code == "00161526"
+    assert county.name == "Autauga County"
+    assert repr(county) == "<County:Autauga County>"
+    assert str(county) == "Autauga County"
+
+
+def test_every_state_has_counties():
+    for state in us.STATES_AND_TERRITORIES:
+        assert isinstance(state.counties, list), f"{state.abbr} has no counties"
+
+
+def test_county_fips_format():
+    for state in us.STATES_AND_TERRITORIES:
+        for county in state.counties:
+            assert COUNTY_FIPS_RE.match(county.fips), f"{state.abbr}: bad county fips {county.fips!r}"
+
+
+def test_county_fips_prefixed_by_state():
+    for state in us.STATES_AND_TERRITORIES:
+        for county in state.counties:
+            assert county.fips.startswith(state.fips), (
+                f"{state.abbr}: county {county.name} fips {county.fips} not prefixed by state fips {state.fips}"
+            )
