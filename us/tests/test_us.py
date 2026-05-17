@@ -188,6 +188,5 @@ def test_county_fips_prefixed_by_state():
     for state in us.STATES_AND_TERRITORIES:
         for county in state.counties:
             assert county.fips.startswith(state.fips), (
-                f"{state.abbr}: county {county.name} fips {county.fips} "
-                f"not prefixed by state fips {state.fips}"
+                f"{state.abbr}: county {county.name} fips {county.fips} not prefixed by state fips {state.fips}"
             )
