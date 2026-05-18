@@ -7,6 +7,13 @@ import jellyfish  # type: ignore
 
 FIPS_RE = re.compile(r"^\d{2}$")
 ABBR_RE = re.compile(r"^[a-zA-Z]{2}$")
+# Trailing " State" / leading "State of " / leading "Commonwealth of " - common
+# qualifier patterns that disambiguate a state from a city ("New York State"
+# vs "New York") in datasets. Stripped before phonetic matching.
+_NAME_QUALIFIER_RE = re.compile(
+    r"^(?:state\s+of\s+|commonwealth\s+of\s+)|\s+state\s*$",
+    re.IGNORECASE,
+)
 
 DC_STATEHOOD = bool(os.environ.get("DC_STATEHOOD"))
 
@@ -108,7 +115,7 @@ def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional
             val = val.upper()
             field = "abbr"
         else:
-            val = jellyfish.metaphone(val)
+            val = jellyfish.metaphone(_NAME_QUALIFIER_RE.sub("", val))
             field = "name_metaphone"
 
     # see if result is in cache

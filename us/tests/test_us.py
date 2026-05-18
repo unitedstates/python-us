@@ -51,6 +51,17 @@ def test_name():
     assert us.states.lookup("Virginia") != us.states.MD
 
 
+def test_name_with_state_qualifier():
+    # Issue #59: "New York State" and "Washington State" should resolve to NY
+    # and WA, since some datasets qualify these to disambiguate from the cities.
+    assert us.states.lookup("New York State") == us.states.NY
+    assert us.states.lookup("Washington State") == us.states.WA
+    # Same for the "State of X" / "Commonwealth of X" prefixes used in some
+    # legal and government data.
+    assert us.states.lookup("State of California") == us.states.CA
+    assert us.states.lookup("Commonwealth of Virginia") == us.states.VA
+
+
 # lookups
 
 
