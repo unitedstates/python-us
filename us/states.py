@@ -1,6 +1,6 @@
 import os
 import re
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Callable, Dict, Iterable, List, Optional
 from urllib.parse import urljoin
 
 import jellyfish  # type: ignore
@@ -12,6 +12,9 @@ DC_STATEHOOD = bool(os.environ.get("DC_STATEHOOD"))
 
 
 _lookup_cache: Dict[str, "State"] = {}
+
+# Words stripped by clean_name when normalizing free-form text to a state name.
+_NAME_STOP_WORDS = frozenset({"the", "state", "commonwealth", "of"})
 
 
 class County:
@@ -80,7 +83,50 @@ class State:
         return urls
 
 
-def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional[State]:
+def clean_name(val: str) -> str:
+    """Normalize free-form text down to a bare state name.
+
+    Removes punctuation and the filler words "the", "state", "commonwealth",
+    and "of", then collapses whitespace. For example, " The state OF idaho "
+    becomes "idaho" and "Commonwealth of Virginia" becomes "virginia".
+    """
+
+    # drop punctuation, keeping word and whitespace boundaries intact
+    val = re.sub(r"[^\w\s]", " ", val.lower())
+
+    # tokenize (this also trims and collapses whitespace) and drop stop words
+    tokens = [t for t in val.split() if t not in _NAME_STOP_WORDS]
+
+    return " ".join(tokens)
+
+
+def startswith_fallback(val: str) -> Optional[State]:
+    """A `fallback_func` for `lookup` that matches on a state name prefix.
+
+    Returns the first state (or territory) whose name starts with `val`,
+    compared case-insensitively. Returns None when nothing matches. Note
+    that a short prefix may be ambiguous (e.g. "m" matches many states);
+    the first match wins. An empty string matches nothing.
+    """
+
+    if not val:
+        return None
+
+    val = val.lower()
+
+    for state in STATES_AND_TERRITORIES:
+        if state.name.lower().startswith(val):
+            return state
+
+    return None
+
+
+def lookup(
+    val,
+    field: Optional[str] = None,
+    use_cache: bool = True,
+    fallback_func: Optional[Callable[[Any], Optional[State]]] = None,
+) -> Optional[State]:
     """Semi-fuzzy state lookup. This method will make a best effort
     attempt at finding the state based on the lookup value provided.
 
@@ -97,9 +143,19 @@ def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional
 
     This method caches non-None results, but can the cache can be bypassed
     with the `use_cache=False` argument.
+
+    If no match is found and a `fallback_func` is provided, it is called
+    with the original, untransformed lookup value as its single argument
+    and its return value is used as the result. This lets callers supply
+    custom match logic (see `startswith_fallback`). Fallback results are
+    not cached.
     """
 
     matched_state = None
+
+    # preserve the caller's original value for the fallback, since `val`
+    # may be reassigned below (e.g. to its metaphone)
+    original_val = val
 
     if field is None:
         if FIPS_RE.match(val):
@@ -121,6 +177,10 @@ def lookup(val, field: Optional[str] = None, use_cache: bool = True) -> Optional
             matched_state = state
             if use_cache:
                 _lookup_cache[cache_key] = state
+
+    # no match yet — give the caller-provided fallback a final attempt
+    if matched_state is None and fallback_func is not None:
+        matched_state = fallback_func(original_val)
 
     return matched_state
 

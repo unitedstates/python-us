@@ -74,6 +74,84 @@ def test_obsolete_lookup():
         assert us.states.lookup(state.name) is None
 
 
+# clean_name
+
+
+def test_clean_name_example():
+    assert us.states.clean_name(" The state OF idaho ") == "idaho"
+
+
+def test_clean_name_removes_punctuation():
+    assert us.states.clean_name("Idaho!") == "idaho"
+    assert us.states.clean_name("North-Dakota") == "north dakota"
+
+
+def test_clean_name_removes_stop_words():
+    assert us.states.clean_name("Commonwealth of Virginia") == "virginia"
+    assert us.states.clean_name("The State of New York") == "new york"
+
+
+def test_clean_name_collapses_whitespace():
+    assert us.states.clean_name("  new    york  ") == "new york"
+
+
+def test_clean_name_passthrough():
+    assert us.states.clean_name("Idaho") == "idaho"
+
+
+# fallback_func
+
+
+def test_lookup_fallback_used_when_no_match():
+    assert us.states.lookup("idah", fallback_func=us.states.startswith_fallback) == us.states.ID
+
+
+def test_lookup_fallback_not_used_when_matched():
+    called = []
+
+    def spy(val):
+        called.append(val)
+        return None
+
+    assert us.states.lookup("Maryland", fallback_func=spy) == us.states.MD
+    assert called == []
+
+
+def test_lookup_fallback_default_none():
+    assert us.states.lookup("notastate") is None
+
+
+def test_lookup_fallback_receives_original_value():
+    received = []
+
+    def spy(val):
+        received.append(val)
+        return None
+
+    us.states.lookup("notastate", fallback_func=spy)
+    assert received == ["notastate"]
+
+
+# startswith_fallback
+
+
+def test_startswith_fallback_matches_prefix():
+    assert us.states.startswith_fallback("ida") == us.states.ID
+    assert us.states.startswith_fallback("IDA") == us.states.ID
+
+
+def test_startswith_fallback_no_match():
+    assert us.states.startswith_fallback("zzz") is None
+
+
+def test_startswith_fallback_empty_string():
+    assert us.states.startswith_fallback("") is None
+
+
+def test_startswith_fallback_via_lookup():
+    assert us.states.lookup("Verm", fallback_func=us.states.startswith_fallback) == us.states.VT
+
+
 # test metaphone
 
 

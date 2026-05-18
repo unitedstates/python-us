@@ -140,6 +140,25 @@ we've got phonetic name matching too:
 <State:Mississippi>
 ```
 
+When the input is wrapped in extra words or punctuation, `clean_name` strips
+it down to a bare state name before lookup:
+
+```python
+>>> us.states.clean_name(' The state OF idaho ')
+'idaho'
+>>> us.states.lookup(us.states.clean_name('Commonwealth of Virginia'))
+<State:Virginia>
+```
+
+If the built-in matching comes up empty, pass a `fallback_func` to supply
+your own match logic. The `startswith_fallback` helper matches on a state
+name prefix:
+
+```python
+>>> us.states.lookup('verm', fallback_func=us.states.startswith_fallback)
+<State:Vermont>
+```
+
 
 ### Shapefiles
 
