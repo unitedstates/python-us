@@ -156,15 +156,15 @@ def lookup(
     return matched_state
 
 
-_CLEAN_NAME_STOPWORDS = {"the", "state", "of"}
+_CLEAN_NAME_STOPWORDS = {"the", "commonwealth", "state", "of"}
 
 
 def clean_name(text: str) -> str:
     """Strip an incoming string down to a bare state name.
 
-    Removes punctuation and the filler words "the", "state", and "of",
-    tokenizes on whitespace, and recombines the remaining tokens into a
-    single space-separated, lowercased string.
+    Removes punctuation and the filler words "the", "commonwealth",
+    "state", and "of", tokenizes on whitespace, and recombines the
+    remaining tokens into a single space-separated, lowercased string.
 
       >>> clean_name(" The state OF idaho ")
       'idaho'

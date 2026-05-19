@@ -141,6 +141,52 @@ we've got phonetic name matching too:
 ```
 
 
+### Cleaning up messy input
+
+If your lookup values come from user input or other unpredictable sources,
+`clean_name()` can strip them down to something the lookup is more likely to
+match. It lowercases the input, removes punctuation, and drops the filler
+words `the`, `commonwealth`, `state`, and `of`:
+
+```python
+>>> us.states.clean_name(' The state OF idaho ')
+'idaho'
+>>> us.states.clean_name('Commonwealth of Virginia')
+'virginia'
+>>> us.states.lookup(us.states.clean_name('The State of Maryland!'))
+<State:Maryland>
+```
+
+`clean_name` is a standalone helper and `lookup` does not call it
+automatically. Apply it yourself when you want it.
+
+
+### Custom fallback matching
+
+`lookup` accepts an optional `fallback_func` that is called when none of the
+built-in matching strategies find a state. It receives the original lookup
+value and should return a `State` or `None`:
+
+```python
+>>> def my_fallback(val):
+...     return us.states.AK if val == 'the big one' else None
+>>> us.states.lookup('the big one', fallback_func=my_fallback)
+<State:Alaska>
+```
+
+For the common case of matching against the start of a state name, the
+included `startswith_fallback` helper does just that (case-insensitively):
+
+```python
+>>> us.states.lookup('calif', fallback_func=us.states.startswith_fallback)
+<State:California>
+```
+
+Fallback results are cached separately per fallback function, so a cached
+fallback match won't leak into lookups that pass a different fallback (or
+no fallback at all).
+
+
 ### Shapefiles
 
 You want shapefiles too? As long as you want 2010 shapefiles, we've gotcha covered.
