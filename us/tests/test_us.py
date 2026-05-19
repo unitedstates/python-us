@@ -74,6 +74,98 @@ def test_obsolete_lookup():
         assert us.states.lookup(state.name) is None
 
 
+# clean_name
+
+
+def test_clean_name():
+    assert us.states.clean_name(" The state OF idaho ") == "idaho"
+    assert us.states.clean_name("Idaho!") == "idaho"
+    assert us.states.clean_name("idaho") == "idaho"
+    assert us.states.clean_name("") == ""
+    assert us.states.clean_name("the state of") == ""
+    assert us.states.clean_name("New York") == "new york"
+    assert us.states.clean_name("new_york") == "new york"
+
+
+# fallback_func / startswith_fallback
+
+
+def test_startswith_fallback():
+    california = us.states.lookup("CA")
+    assert us.states.startswith_fallback("calif") == california
+    assert us.states.startswith_fallback("CALIF") == california
+    assert us.states.startswith_fallback("zzz") is None
+    assert us.states.startswith_fallback("") is None
+
+
+def test_lookup_fallback_func():
+    california = us.states.lookup("CA")
+    idaho = us.states.lookup("ID")
+
+    # a garbage value that normally misses resolves via the fallback
+    assert us.states.lookup("calif", use_cache=False, fallback_func=us.states.startswith_fallback) == california
+
+    # without a fallback the same value still returns None
+    assert us.states.lookup("calif", use_cache=False) is None
+    assert us.states.lookup("calif", use_cache=False, fallback_func=None) is None
+
+    def boom(val):
+        raise AssertionError("fallback_func should not be called on a match")
+
+    # the fallback is not consulted when the normal scan matches
+    assert us.states.lookup("idaho", use_cache=False, fallback_func=boom) == idaho
+
+    # ...nor when a cache hit short-circuits the lookup
+    us.states.lookup("idaho")  # prime the cache
+    assert us.states.lookup("idaho", fallback_func=boom) == idaho
+
+
+def test_lookup_fallback_caching():
+    california = us.states.lookup("CA")
+
+    calls = []
+
+    def counting_fallback(val):
+        calls.append(val)
+        return us.states.startswith_fallback(val)
+
+    # a fallback hit is cached: the second call is served without re-invoking
+    assert us.states.lookup("califo", fallback_func=counting_fallback) == california
+    assert us.states.lookup("califo", fallback_func=counting_fallback) == california
+    assert calls == ["califo"]
+
+    # the cached fallback hit does NOT leak into a no-fallback lookup
+    assert us.states.lookup("califo") is None
+
+    # ...nor into a lookup using a different fallback
+    other_calls = []
+
+    def other_fallback(val):
+        other_calls.append(val)
+        return None
+
+    assert us.states.lookup("califo", fallback_func=other_fallback) is None
+    assert other_calls == ["califo"]
+
+    # use_cache=False neither reads nor writes the cache: the fallback runs
+    # on every call
+    calls.clear()
+    assert us.states.lookup("califo", use_cache=False, fallback_func=counting_fallback) == california
+    assert us.states.lookup("califo", use_cache=False, fallback_func=counting_fallback) == california
+    assert calls == ["califo", "califo"]
+
+
+def test_lookup_cache_hit_short_circuit():
+    # poison the cache with a deliberately wrong answer; if the cache-hit
+    # short-circuit works, lookup returns it without scanning the state list
+    cache = us.states._lookup_cache
+    cache["abbr:MD"] = us.states.CA
+    try:
+        assert us.states.lookup("MD") == us.states.CA
+    finally:
+        cache.pop("abbr:MD", None)
+
+
 # test metaphone
 
 
