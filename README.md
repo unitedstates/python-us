@@ -1,6 +1,6 @@
 [![Workflow status badge](https://github.com/unitedstates/python-us/workflows/Tests/badge.svg)](https://github.com/unitedstates/python-us/actions/workflows/pythonpackage.yml)
 
-# US: The Greatest Package in the World
+# US
 
 A package for easily working with US and state metadata.
 
