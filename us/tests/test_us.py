@@ -1,8 +1,8 @@
 import re
 from itertools import chain
 
-import jellyfish  # type: ignore
-import pytest  # type: ignore
+import jellyfish
+import pytest
 import pytz
 
 import us
@@ -251,10 +251,15 @@ def test_dc():
 
 @pytest.mark.skip
 def test_head():
-    import requests
+    # `requests` is intentionally not declared as a dependency; this test
+    # is permanently skipped and the import is dead code for ty.
+    import requests  # ty: ignore[unresolved-import]
 
     for state in us.STATES_AND_TERRITORIES:
-        for url in state.shapefile_urls().values():
+        urls = state.shapefile_urls()
+        if urls is None:
+            continue
+        for url in urls.values():
             resp = requests.head(url)
             assert resp.status_code == 200
 
@@ -312,6 +317,7 @@ def test_county_fips_format():
 
 def test_county_fips_prefixed_by_state():
     for state in us.STATES_AND_TERRITORIES:
+        assert state.fips is not None, f"{state.abbr}: missing state fips"
         for county in state.counties:
             assert county.fips.startswith(state.fips), (
                 f"{state.abbr}: county {county.name} fips {county.fips} not prefixed by state fips {state.fips}"

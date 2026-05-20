@@ -38,8 +38,10 @@ def main():
 
         sys.stdout.write("\n")
         sys.stdout.write("  shapefiles:\n")
-        for region, url in state.shapefile_urls().items():
-            sys.stdout.write("    %s: %s\n" % (region, url))
+        urls = state.shapefile_urls()
+        if urls is not None:
+            for region, url in urls.items():
+                sys.stdout.write("    %s: %s\n" % (region, url))
 
         sys.stdout.write("\n")
 

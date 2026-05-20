@@ -4,7 +4,7 @@ from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Type
 from urllib.parse import urljoin
 
-import jellyfish  # type: ignore
+import jellyfish
 
 FIPS_RE = re.compile(r"^\d{2}$")
 ABBR_RE = re.compile(r"^[a-zA-Z]{2}$")
@@ -137,7 +137,6 @@ def lookup(
     # fallback results are cached under a separate, fallback-specific key so
     # they never leak into non-fallback lookups -- or lookups using a
     # different fallback -- of the same value
-    fallback_key = None
     if fallback_func is not None:
         fallback_key = f"{cache_key}:fallback:{fallback_func!r}"
         if use_cache and fallback_key in _lookup_cache:
