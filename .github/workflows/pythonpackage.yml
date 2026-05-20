@@ -25,6 +25,9 @@ jobs:
       - name: Check code format with Ruff
         run: uv run ruff format --check us
 
+      - name: Check types with ty
+        run: uv run ty check us
+
   testing:
     needs: linting
     runs-on: ubuntu-latest
