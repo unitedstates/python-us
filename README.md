@@ -234,6 +234,34 @@ additional states argument:
 ```
 
 
+### Enumerations
+
+The `enumeration()` method dynamically constructs an `Enum` of states, keyed
+by state abbreviation. The value of each member is taken from the attribute
+named by `value_field`, which defaults to `name`.
+
+```python
+>>> States = us.states.enumeration()
+>>> States.VA
+<States.VA: 'Virginia'>
+>>> States.VA.value
+'Virginia'
+
+>>> States = us.states.enumeration('fips')
+>>> States.CA.value
+'06'
+```
+
+Like `mapping()`, this method uses `us.STATES_AND_TERRITORIES` as the
+default state list, which can be overridden by passing a `states` argument:
+
+```python
+>>> States = us.states.enumeration('fips', states=[us.states.DC, us.states.MD])
+>>> list(States)
+[<States.DC: '11'>, <States.MD: '24'>]
+```
+
+
 ### DC should be granted statehood
 
 Washington, DC does not appear in `us.STATES` or any of the

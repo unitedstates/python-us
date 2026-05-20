@@ -201,6 +201,34 @@ def test_custom_mapping():
     assert "MD" in mapping
 
 
+# enumerations
+
+
+def test_enumeration():
+    states = us.STATES[:5]
+    enum = us.states.enumeration("name", states=states)
+    for state in states:
+        assert enum[state.abbr].value == state.name
+
+
+def test_enumeration_default_states():
+    enum = us.states.enumeration("name")
+    assert enum["VA"].value == "Virginia"
+    assert enum["DC"].value == "District of Columbia"
+
+
+def test_enumeration_default_value_field():
+    enum = us.states.enumeration()
+    assert enum["VA"].value == "Virginia"
+
+
+def test_custom_enumeration():
+    enum = us.states.enumeration("fips", states=[us.states.DC, us.states.MD])
+    assert len(enum) == 2
+    assert enum["DC"].value == us.states.DC.fips
+    assert enum["MD"].value == us.states.MD.fips
+
+
 # known bugs
 
 

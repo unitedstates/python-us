@@ -1,6 +1,7 @@
 import os
 import re
-from typing import Any, Callable, Dict, Iterable, List, Optional
+from enum import Enum
+from typing import Any, Callable, Dict, Iterable, List, Optional, Type
 from urllib.parse import urljoin
 
 import jellyfish  # type: ignore
@@ -201,6 +202,12 @@ def mapping(from_field: str, to_field: str, states: Optional[Iterable[State]] = 
     if states is None:
         states = STATES_AND_TERRITORIES
     return {getattr(s, from_field): getattr(s, to_field) for s in states}
+
+
+def enumeration(value_field: str = "name", states: Optional[Iterable[State]] = None) -> Type[Enum]:
+    if states is None:
+        states = STATES_AND_TERRITORIES
+    return Enum("States", {s.abbr: getattr(s, value_field) for s in states})
 
 
 AL = State(
