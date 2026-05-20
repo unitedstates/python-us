@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "us"
 version = "4.0.0.dev0"
-description = "US state meta information and other fun stuff"
+description = "US state metadata"
 readme = "README.md"
 urls.Homepage = "https://github.com/unitedstates/python-us/"
 urls."Issue tracker" = "https://github.com/unitedstates/python-us/issues"

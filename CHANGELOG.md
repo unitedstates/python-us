@@ -3,8 +3,9 @@
 ## 4.0.0
 
 * add counties, thanks to [Ray Kiddy](https://github.com/rkiddy)
-* DC has returned to `STATES_AND_TERRITORIES`, thanks to [Kavi Gupta](https://github.com/kavigupta)
 * add `clean_name()` method and `fallback_func` parameter to `lookup()` to provide customizable matching, thanks to [Max Filenko](https://github.com/mfilenko) and [Charlie Tonneslan](https://github.com/c-tonneslan)
+* DC has returned to `STATES_AND_TERRITORIES`, thanks to [Kavi Gupta](https://github.com/kavigupta)
+* add `us.__version__` and deprecate `us.version`
 * fix `py.typed` location, thanks to [johnw-bluemark](https://github.com/johnw-bluemark)
 * add support for Python 3.13 and 3.14
 * switch to [uv](https://docs.astral.sh/uv/) for development and packaging
