@@ -7,7 +7,7 @@ Before spending time working on a pull request, please [open an idea discussion]
 To speed up the review process, please ensure:
 
 * your change has corresponding tests that run with the existing pytest suite and pass.
-* the code is formatted with [black](https://black.readthedocs.io/en/stable/index.html), included in the dev dependencies.
+* the code is formatted with [ruff](https://docs.astral.sh/ruff/), included in the dev dependencies.
 * you are open to feedback!
 
 Thank you and we look forward to your contribution! ✨

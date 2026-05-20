@@ -21,9 +21,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: Set version from tag
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          sed -i "s/^__version__ = .*/__version__ = \"${VERSION}\"/" us/version.py
+        run: uv version "${GITHUB_REF#refs/tags/v}"
 
       - name: Build package
         run: uv build

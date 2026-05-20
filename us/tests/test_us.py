@@ -16,6 +16,12 @@ def test_attribute():
         assert state == getattr(us.states, state.abbr)
 
 
+def test_version_deprecation():
+    with pytest.warns(DeprecationWarning):
+        version = us.version
+    assert version == us.__version__
+
+
 def test_valid_timezones():
     for state in us.STATES_AND_TERRITORIES:
         if state.capital:
