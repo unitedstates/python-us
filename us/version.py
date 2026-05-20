@@ -1,1 +1,6 @@
-__version__ = "4.0.0.dev"
+try:
+    from importlib.metadata import version
+
+    __version__ = version("us")
+except Exception:
+    __version__ = "unknown"

@@ -25,10 +25,10 @@ As per usual:
 pip install us
 ```
 
-or 
+or
 
 ```
-uv install us
+uv add us
 ```
 
 
@@ -39,7 +39,8 @@ This project uses [uv](https://docs.astral.sh/uv/) for development.
 ```
 uv sync
 uv run pytest
-uv run black --check us
+uv run ruff check us
+uv run ruff format --check us
 ```
 
 

@@ -1,14 +1,15 @@
 [build-system]
 requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "us"
+version = "4.0.0.dev0"
 description = "US state meta information and other fun stuff"
 readme = "README.md"
 urls.Homepage = "https://github.com/unitedstates/python-us/"
 urls."Issue tracker" = "https://github.com/unitedstates/python-us/issues"
 requires-python = ">=3.8"
-dynamic = ["version"]
 authors = [{ name = "Jeremy Carbaugh", email = "jeremy@jcarbaugh.com" }]
 classifiers = [
     "Programming Language :: Python",
@@ -29,9 +30,6 @@ states = "us.cli.states:main"
 
 [dependency-groups]
 dev = ['ruff', 'pytest', 'pytz']
-
-[tool.setuptools.dynamic]
-version = { attr = "us.version.__version__" }
 
 [tool.ruff]
 line-length = 120
