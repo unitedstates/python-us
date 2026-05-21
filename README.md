@@ -104,21 +104,21 @@ Some states like to be fancy and call themselves commonwealths:
 [<State:Kentucky>, <State:Massachusetts>, <State:Pennsylvania>, <State:Virginia>]
 ```
 
-There's also a list of obsolete territories:
-
-```python
->>> us.states.OBSOLETE
-[<State:Dakota>, <State:Orleans>, <State:Philippine Islands>]
-```
-
-And a list of associated states — sovereign nations in free association with
+There's a list of associated states, sovereign nations in free association with
 the United States under the Compact of Free Association. They are not US
-states or territories, and are not included in `STATES_AND_TERRITORIES` or
+states or territories and are not included in `STATES_AND_TERRITORIES` or
 returned by `lookup()`:
 
 ```python
 >>> us.states.ASSOCIATED_STATES
 [<State:Federated States of Micronesia>, <State:Marshall Islands>, <State:Palau>]
+```
+
+And a list of obsolete territories:
+
+```python
+>>> us.states.OBSOLETE
+[<State:Dakota>, <State:Orleans>, <State:Philippine Islands>]
 ```
 
 The state lookup method allows matching by FIPS code, abbreviation, and name:
