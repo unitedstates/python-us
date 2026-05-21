@@ -2,8 +2,8 @@
 
 ## 4.0.0
 
-* add `ASSOCIATED_STATES` list with entries for Marshall Islands, Federated States of Micronesia, and Palau, plus a new `is_associated` attribute on `State`
 * add counties, thanks to [Ray Kiddy](https://github.com/rkiddy)
+* add `ASSOCIATED_STATES` list with entries for Marshall Islands, Federated States of Micronesia, and Palau, plus a new `is_associated` attribute on `State`
 * add `clean_name()` method and `fallback_func` parameter to `lookup()` to provide customizable matching, thanks to [Max Filenko](https://github.com/mfilenko) and [Charlie Tonneslan](https://github.com/c-tonneslan)
 * DC has returned to `STATES_AND_TERRITORIES`, thanks to [Kavi Gupta](https://github.com/kavigupta)
 * change ND time zone from America/Boise to America/Denver
