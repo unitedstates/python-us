@@ -29,7 +29,12 @@ dependencies = ['jellyfish']
 states = "us.cli.states:main"
 
 [dependency-groups]
-dev = ['ruff', 'pytest', 'pytz']
+dev = [
+    'ruff',
+    'pytest',
+    'pytz',
+    "ty>=0.0.38",
+]
 
 [tool.ruff]
 line-length = 120
