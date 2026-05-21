@@ -12,7 +12,7 @@ from us.states import County
 
 
 def test_attribute():
-    for state in us.STATES_AND_TERRITORIES:
+    for state in chain(us.STATES_AND_TERRITORIES, us.ASSOCIATED_STATES):
         assert state == getattr(us.states, state.abbr)
 
 
@@ -23,7 +23,7 @@ def test_version_deprecation():
 
 
 def test_valid_timezones():
-    for state in us.STATES_AND_TERRITORIES:
+    for state in chain(us.STATES_AND_TERRITORIES, us.ASSOCIATED_STATES):
         if state.capital:
             assert pytz.timezone(state.capital_tz)
         for tz in state.time_zones:
@@ -176,7 +176,7 @@ def test_lookup_cache_hit_short_circuit():
 
 
 def test_jellyfish_metaphone():
-    for state in chain(us.STATES_AND_TERRITORIES, us.OBSOLETE):
+    for state in chain(us.STATES_AND_TERRITORIES, us.OBSOLETE, us.ASSOCIATED_STATES):
         assert state.name_metaphone == jellyfish.metaphone(state.name)
 
 
@@ -287,6 +287,34 @@ def test_contiguous():
 def test_continental():
     # Lower 48 + Alaska
     assert len(us.STATES_CONTINENTAL) == 49
+
+
+# associated states (Compact of Free Association)
+
+
+def test_associated_states_count():
+    assert len(us.ASSOCIATED_STATES) == 3
+
+
+def test_associated_states_not_in_states_and_territories():
+    for state in us.ASSOCIATED_STATES:
+        assert state not in us.STATES_AND_TERRITORIES
+
+
+def test_associated_states_lookup_returns_none():
+    # lookup() only scans STATES_AND_TERRITORIES, so associated states
+    # are deliberately unreachable through it
+    for state in us.ASSOCIATED_STATES:
+        assert us.states.lookup(state.abbr) is None
+        assert us.states.lookup(state.name) is None
+        assert us.states.lookup(state.fips) is None
+
+
+def test_associated_states_have_is_associated_flag():
+    for state in us.ASSOCIATED_STATES:
+        assert state.is_associated is True
+    for state in chain(us.STATES_AND_TERRITORIES, us.OBSOLETE):
+        assert state.is_associated is False
 
 
 # counties
