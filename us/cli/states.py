@@ -31,7 +31,11 @@ def main():
         for key in sorted(data.keys()):
             val = data[key]
 
-            if isinstance(val, (list, tuple)):
+            if key == "counties":
+                # counties is a list of County objects, not strings, so it
+                # can't be joined like the other list attributes
+                val = "%d counties" % len(val)
+            elif isinstance(val, (list, tuple)):
                 val = ", ".join(val)
 
             sys.stdout.write("    %s: %s\n" % (key, val))
