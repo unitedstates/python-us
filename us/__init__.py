@@ -5,6 +5,7 @@ from .states import (
     TERRITORIES,
     STATES_AND_TERRITORIES,
     OBSOLETE,
+    ASSOCIATED_STATES,
 )
 from .unitedstatesofamerica import name, abbr, birthday
 
@@ -33,6 +34,7 @@ __all__ = [
     "TERRITORIES",
     "STATES_AND_TERRITORIES",
     "OBSOLETE",
+    "ASSOCIATED_STATES",
     "name",
     "abbr",
     "birthday",
