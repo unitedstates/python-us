@@ -6,6 +6,7 @@ import pytest
 import pytz
 
 import us
+from us.cli import states as states_cli
 from us.states import County
 
 # attribute
@@ -244,6 +245,19 @@ def test_wayoming():
 
 def test_dc():
     assert us.states.DC not in us.STATES
+
+
+# cli
+
+
+def test_cli_lookup(capsys, monkeypatch):
+    # the counties attribute is a list of County objects, which used to crash
+    # the "other attributes" loop when it tried to join them as strings
+    monkeypatch.setattr("sys.argv", ["states", "MD"])
+    states_cli.main()
+    out = capsys.readouterr().out
+    assert "Maryland" in out
+    assert "counties" in out
 
 
 # shapefiles
