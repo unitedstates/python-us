@@ -13,6 +13,7 @@
 * add support for Python 3.13 and 3.14
 * switch to [uv](https://docs.astral.sh/uv/) for development and packaging
 * switch from black and flake8 to [ruff](https://docs.astral.sh/ruff/)
+* fix crash in `states` CLI when printing counties, thanks to [Arpit Jain](https://github.com/arpitjain099)
 * thanks to maintainer [Pedro Camargo](https://github.com/pedrocamargo)
 
 
