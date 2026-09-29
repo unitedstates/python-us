@@ -31,7 +31,8 @@ states = "us.cli.states:main"
 [dependency-groups]
 dev = [
     'ruff',
-    'pytest',
+    'pytest>=9.0.3; python_version >= "3.10"',
+    'pytest; python_version < "3.10"',
     'pytz',
     "ty>=0.0.38",
 ]
