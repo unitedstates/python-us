@@ -42,7 +42,9 @@ def main():
 
         sys.stdout.write("\n")
         sys.stdout.write("  shapefiles:\n")
-        urls = state.shapefile_urls()
+        # pass the default explicitly: the CLI tracks whatever the library
+        # default is without tripping its deprecation warning
+        urls = state.shapefile_urls(vintage=us.states.DEFAULT_SHAPEFILE_VINTAGE)
         if urls is not None:
             for region, url in urls.items():
                 sys.stdout.write("    %s: %s\n" % (region, url))

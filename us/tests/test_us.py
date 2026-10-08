@@ -1,4 +1,10 @@
+import os.path
 import re
+import time
+import urllib.error
+import urllib.request
+import warnings
+from concurrent.futures import ThreadPoolExecutor
 from itertools import chain
 
 import jellyfish
@@ -262,20 +268,159 @@ def test_cli_lookup(capsys, monkeypatch):
 
 # shapefiles
 
+SHAPEFILE_REGIONS = {"block", "blockgroup", "cd", "county", "state", "tract", "zcta"}
 
-@pytest.mark.skip
-def test_head():
-    # `requests` is intentionally not declared as a dependency; this test
-    # is permanently skipped and the import is dead code for ty.
-    import requests  # ty: ignore[unresolved-import]
+# layers the Census Bureau only publishes as a single nationwide file in the
+# 2020 vintage, so the URL is the same no matter which state you ask for
+NATIONWIDE_2020_REGIONS = {"cd", "county", "state", "zcta"}
 
+TIGER2020 = "https://www2.census.gov/geo/tiger/TIGER2020/"
+TIGER2010 = "https://www2.census.gov/geo/tiger/TIGER2010/"
+
+
+def test_shapefile_urls_default_to_2010():
+    # the default is still 2010 until the 5.0 release
+    assert us.states.DEFAULT_SHAPEFILE_VINTAGE == 2010
+
+    with pytest.warns(DeprecationWarning):
+        urls = us.states.MD.shapefile_urls()
+
+    assert urls == {
+        "tract": TIGER2010 + "TRACT/2010/tl_2010_24_tract10.zip",
+        "cd": TIGER2010 + "CD/111/tl_2010_24_cd111.zip",
+        "county": TIGER2010 + "COUNTY/2010/tl_2010_24_county10.zip",
+        "state": TIGER2010 + "STATE/2010/tl_2010_24_state10.zip",
+        "zcta": TIGER2010 + "ZCTA5/2010/tl_2010_24_zcta510.zip",
+        "block": TIGER2010 + "TABBLOCK/2010/tl_2010_24_tabblock10.zip",
+        "blockgroup": TIGER2010 + "BG/2010/tl_2010_24_bg10.zip",
+    }
+
+
+def test_shapefile_urls_default_matches_explicit_2010():
+    with pytest.warns(DeprecationWarning):
+        default_urls = us.states.MD.shapefile_urls()
+
+    assert default_urls == us.states.MD.shapefile_urls(vintage=2010)
+
+
+@pytest.mark.parametrize("state", [us.states.MD, us.states.PR])
+def test_shapefile_urls_default_warns_about_the_5_0_change(state):
+    with pytest.warns(DeprecationWarning) as record:
+        state.shapefile_urls()
+
+    assert len(record) == 1
+
+    message = str(record[0].message)
+    assert "shapefile_urls()" in message
+    assert "2010" in message
+    assert "2020" in message
+    assert "5.0" in message
+    # the warning should tell callers how to pin either vintage
+    assert "vintage=2010" in message
+    assert "vintage=2020" in message
+
+    # stacklevel should point the warning at the caller, not at us/states.py
+    assert os.path.basename(record[0].filename) == os.path.basename(__file__)
+
+
+def test_shapefile_urls_explicit_vintage_does_not_warn():
+    # passing a vintage is how callers opt out of the deprecation warning
+    with warnings.catch_warnings():
+        warnings.simplefilter("error", DeprecationWarning)
+
+        for vintage in us.states.SHAPEFILE_VINTAGES:
+            assert us.states.MD.shapefile_urls(vintage=vintage) is not None
+
+
+def test_shapefile_urls_2020():
+    # the vintage that will become the default in 5.0
+    assert us.states.FUTURE_DEFAULT_SHAPEFILE_VINTAGE == 2020
+
+    urls = us.states.MD.shapefile_urls(vintage=2020)
+    assert urls == {
+        "tract": TIGER2020 + "TRACT/tl_2020_24_tract.zip",
+        "cd": TIGER2020 + "CD/tl_2020_us_cd116.zip",
+        "county": TIGER2020 + "COUNTY/tl_2020_us_county.zip",
+        "state": TIGER2020 + "STATE/tl_2020_us_state.zip",
+        "zcta": TIGER2020 + "ZCTA520/tl_2020_us_zcta520.zip",
+        "block": TIGER2020 + "TABBLOCK20/tl_2020_24_tabblock20.zip",
+        "blockgroup": TIGER2020 + "BG/tl_2020_24_bg.zip",
+    }
+
+
+@pytest.mark.parametrize("vintage", us.states.SHAPEFILE_VINTAGES)
+def test_shapefile_urls_cover_every_state_and_territory(vintage):
     for state in us.STATES_AND_TERRITORIES:
-        urls = state.shapefile_urls()
-        if urls is None:
-            continue
-        for url in urls.values():
-            resp = requests.head(url)
-            assert resp.status_code == 200
+        urls = state.shapefile_urls(vintage=vintage)
+        assert urls is not None, state
+        assert set(urls) == SHAPEFILE_REGIONS, state
+
+        for region, url in urls.items():
+            assert url.startswith(f"https://www2.census.gov/geo/tiger/TIGER{vintage}/"), url
+            assert url.endswith(".zip"), url
+            if vintage == 2020 and region in NATIONWIDE_2020_REGIONS:
+                assert "_us_" in url
+            else:
+                assert f"_{state.fips}_" in url, url
+
+
+def test_shapefile_urls_without_fips():
+    # obsolete states have no FIPS code, so there is nothing to build a URL from
+    for state in us.OBSOLETE:
+        assert state.fips is None
+        for vintage in us.states.SHAPEFILE_VINTAGES:
+            assert state.shapefile_urls(vintage=vintage) is None
+
+
+def test_shapefile_urls_unsupported_vintage():
+    with pytest.raises(ValueError, match="unsupported shapefile vintage"):
+        us.states.MD.shapefile_urls(vintage=2000)
+
+
+def _head_status(url: str, attempts: int = 3) -> int:
+    """HEAD `url` and return its status code."""
+
+    request = urllib.request.Request(url, method="HEAD")
+
+    for attempt in range(1, attempts + 1):
+        try:
+            with urllib.request.urlopen(request, timeout=60) as resp:
+                return resp.getcode()
+        except urllib.error.HTTPError as exc:
+            # a real answer from the server, including a 404 for a bad URL
+            return exc.code
+        except urllib.error.URLError:
+            # DNS and connection hiccups are common when firing off a few
+            # hundred requests, so retry before calling the URL broken
+            if attempt == attempts:
+                raise
+            time.sleep(attempt)
+
+    raise AssertionError("unreachable")
+
+
+@pytest.mark.network
+@pytest.mark.parametrize("vintage", us.states.SHAPEFILE_VINTAGES)
+def test_shapefile_urls_are_live(vintage):
+    """Check every generated URL against the Census Bureau.
+
+    Deselected by default because it needs network access and makes a few
+    hundred requests. Run it with `uv run pytest -m network`.
+    """
+    urls = set()
+    for state in us.STATES_AND_TERRITORIES:
+        state_urls = state.shapefile_urls(vintage=vintage)
+        assert state_urls is not None
+        urls.update(state_urls.values())
+
+    # the nationwide 2020 layers repeat across states, so check each URL once
+    unique_urls = sorted(urls)
+
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        statuses = dict(zip(unique_urls, pool.map(_head_status, unique_urls)))
+
+    broken = {url: status for url, status in statuses.items() if status != 200}
+    assert not broken, f"{len(broken)} of {len(unique_urls)} URLs did not return 200: {broken}"
 
 
 # counts

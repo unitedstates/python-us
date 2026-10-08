@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+* add a `vintage` argument to `shapefile_urls()`, so URLs can be generated for either the 2010 or the 2020 TIGER/Line vintage. In the 2020 vintage the Census Bureau only publishes nationwide files for the `cd`, `county`, `state` and `zcta` layers, so those URLs are the same for every state.
+* `vintage` still defaults to 2010, but that default will change to 2020 in the 5.0 release. Calling `shapefile_urls()` without a `vintage` now raises a `DeprecationWarning`; pass `vintage=2010` to keep the current URLs, or `vintage=2020` to opt in to the new default now.
+* add `network`-marked tests that check the generated shapefile URLs against the Census Bureau, deselected by default
+
+
 ## 4.0.0
 
 * add counties, thanks to [Ray Kiddy](https://github.com/rkiddy)

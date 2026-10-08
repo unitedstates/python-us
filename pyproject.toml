@@ -40,3 +40,9 @@ dev = [
 [tool.ruff]
 line-length = 120
 target-version = "py38"
+
+[tool.pytest.ini_options]
+markers = [
+    "network: makes live requests to the Census Bureau (deselected by default, run with `-m network`)",
+]
+addopts = "-m 'not network'"

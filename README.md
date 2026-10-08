@@ -200,10 +200,10 @@ no fallback at all).
 
 ### Shapefiles
 
-You want shapefiles too? As long as you want 2010 shapefiles, we've gotcha covered.
+You want shapefiles too? We've gotcha covered.
 
 ```
->>> urls = us.states.MD.shapefile_urls()
+>>> urls = us.states.MD.shapefile_urls(vintage=2010)
 >>> sorted(urls.keys())
 ['block', 'blockgroup', 'cd', 'county', 'state', 'tract', 'zcta']
 >>> urls['block']
@@ -220,6 +220,23 @@ the following regions:
 * county
 * state
 * zcta
+
+The `vintage` argument selects the TIGER/Line vintage, either 2010 or 2020:
+
+```
+>>> us.states.MD.shapefile_urls(vintage=2020)['block']
+'https://www2.census.gov/geo/tiger/TIGER2020/TABBLOCK20/tl_2020_24_tabblock20.zip'
+```
+
+**Deprecation:** `vintage` currently defaults to 2010, but in us 5.0 the
+default will change to 2020. Calling `shapefile_urls()` without a `vintage`
+raises a `DeprecationWarning` until then. Pass `vintage=2010` to keep today's
+URLs, or `vintage=2020` to opt in to the new default now.
+
+Note that the Census Bureau stopped publishing per-state files for some layers
+after 2010. In the 2020 vintage the `cd`, `county`, `state` and `zcta` URLs
+point at nationwide files, so they're identical for every state. The `block`
+URLs are for 2020 census blocks (`TABBLOCK20`), and `cd` is the 116th Congress.
 
 
 ### Mappings
@@ -325,6 +342,14 @@ commits to the repo. To run these tests yourself:
 ```
 uv sync
 uv run pytest
+```
+
+Tests marked `network` check the generated shapefile URLs against the Census
+Bureau. They're deselected by default because they need network access and
+make a few hundred requests. To run them:
+
+```
+uv run pytest -m network
 ```
 
 

@@ -1,5 +1,6 @@
 import os
 import re
+import warnings
 from enum import Enum
 from typing import Any, Callable, Dict, Iterable, List, Optional, Type
 from urllib.parse import urljoin
@@ -10,6 +11,12 @@ FIPS_RE = re.compile(r"^\d{2}$")
 ABBR_RE = re.compile(r"^[a-zA-Z]{2}$")
 
 DC_STATEHOOD = bool(os.environ.get("DC_STATEHOOD"))
+
+# TIGER/Line vintages that `State.shapefile_urls()` knows how to build URLs for.
+SHAPEFILE_VINTAGES = (2010, 2020)
+DEFAULT_SHAPEFILE_VINTAGE = 2010
+# the vintage `shapefile_urls()` will default to in the 5.0 release
+FUTURE_DEFAULT_SHAPEFILE_VINTAGE = 2020
 
 
 _lookup_cache: Dict[str, "State"] = {}
@@ -58,28 +65,63 @@ class State:
     def __str__(self) -> str:
         return self.name
 
-    def shapefile_urls(self) -> Optional[Dict[str, str]]:
+    def shapefile_urls(self, vintage: Optional[int] = None) -> Optional[Dict[str, str]]:
         """Shapefiles are available directly from the US Census Bureau:
         https://www.census.gov/cgi-bin/geo/shapefiles/index.php
+
+        `vintage` selects the TIGER/Line vintage, either 2010 or 2020. It
+        currently defaults to 2010, but in the 5.0 release the default will
+        change to 2020, so calling without a `vintage` raises a
+        DeprecationWarning. Pass `vintage=2010` to keep today's URLs, or
+        `vintage=2020` to opt in to the new default now.
+
+        Note that the Census Bureau stopped publishing per-state files for
+        some layers after 2010. In the 2020 vintage the "cd", "county",
+        "state" and "zcta" URLs therefore point at nationwide files, which
+        are identical for every state.
         """
+
+        if vintage is None:
+            warnings.warn(
+                f"shapefile_urls() currently defaults to the {DEFAULT_SHAPEFILE_VINTAGE} TIGER/Line vintage, "
+                f"but will default to the {FUTURE_DEFAULT_SHAPEFILE_VINTAGE} vintage in us 5.0. "
+                f"Pass vintage={DEFAULT_SHAPEFILE_VINTAGE} to keep the current URLs, or "
+                f"vintage={FUTURE_DEFAULT_SHAPEFILE_VINTAGE} to opt in to the new default now.",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            vintage = DEFAULT_SHAPEFILE_VINTAGE
 
         fips = self.fips
 
         if not fips:
             return None
 
-        base = "https://www2.census.gov/geo/tiger/TIGER2010/"
-        urls = {
-            "tract": urljoin(base, f"TRACT/2010/tl_2010_{fips}_tract10.zip"),
-            "cd": urljoin(base, f"CD/111/tl_2010_{fips}_cd111.zip"),
-            "county": urljoin(base, f"COUNTY/2010/tl_2010_{fips}_county10.zip"),
-            "state": urljoin(base, f"STATE/2010/tl_2010_{fips}_state10.zip"),
-            "zcta": urljoin(base, f"ZCTA5/2010/tl_2010_{fips}_zcta510.zip"),
-            "block": urljoin(base, f"TABBLOCK/2010/tl_2010_{fips}_tabblock10.zip"),
-            "blockgroup": urljoin(base, f"BG/2010/tl_2010_{fips}_bg10.zip"),
-        }
+        if vintage == 2010:
+            base = "https://www2.census.gov/geo/tiger/TIGER2010/"
+            return {
+                "tract": urljoin(base, f"TRACT/2010/tl_2010_{fips}_tract10.zip"),
+                "cd": urljoin(base, f"CD/111/tl_2010_{fips}_cd111.zip"),
+                "county": urljoin(base, f"COUNTY/2010/tl_2010_{fips}_county10.zip"),
+                "state": urljoin(base, f"STATE/2010/tl_2010_{fips}_state10.zip"),
+                "zcta": urljoin(base, f"ZCTA5/2010/tl_2010_{fips}_zcta510.zip"),
+                "block": urljoin(base, f"TABBLOCK/2010/tl_2010_{fips}_tabblock10.zip"),
+                "blockgroup": urljoin(base, f"BG/2010/tl_2010_{fips}_bg10.zip"),
+            }
 
-        return urls
+        if vintage == 2020:
+            base = "https://www2.census.gov/geo/tiger/TIGER2020/"
+            return {
+                "tract": urljoin(base, f"TRACT/tl_2020_{fips}_tract.zip"),
+                "cd": urljoin(base, "CD/tl_2020_us_cd116.zip"),
+                "county": urljoin(base, "COUNTY/tl_2020_us_county.zip"),
+                "state": urljoin(base, "STATE/tl_2020_us_state.zip"),
+                "zcta": urljoin(base, "ZCTA520/tl_2020_us_zcta520.zip"),
+                "block": urljoin(base, f"TABBLOCK20/tl_2020_{fips}_tabblock20.zip"),
+                "blockgroup": urljoin(base, f"BG/tl_2020_{fips}_bg.zip"),
+            }
+
+        raise ValueError(f"unsupported shapefile vintage {vintage!r}, expected one of {SHAPEFILE_VINTAGES}")
 
 
 def lookup(
